@@ -1,7 +1,7 @@
 import React from "react";
 import "./TopButton.css";
 
-export default function TopButton({ theme }) {
+export default function TopButton({ theme, skills }) {
   function GoUpEvent() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -9,7 +9,6 @@ export default function TopButton({ theme }) {
 
   function GoDownEvent() {
     const skills = document.getElementById("skills");
-    console.log(skills);
     skills.scrollIntoView(true);
   }
 
@@ -64,20 +63,22 @@ export default function TopButton({ theme }) {
 
   return (
     <>
-      <div
-        onClick={GoDownEvent}
-        id="downButton"
-        style={{
-          color: theme.body,
-          backgroundColor: theme.text,
-          border: `solid 1px ${theme.text}`,
-        }}
-        title="Go Down"
-        onMouseEnter={() => onMouseEnter(theme.text, theme.body)}
-        onMouseLeave={() => onMouseLeave(theme.body, theme.text)}
-      >
-        <i class="fas fa-arrow-down" id="arrow" aria-hidden="true" />
-      </div>
+      {skills && (
+        <div
+          onClick={GoDownEvent}
+          id="downButton"
+          style={{
+            color: theme.body,
+            backgroundColor: theme.text,
+            border: `solid 1px ${theme.text}`,
+          }}
+          title="Go Down"
+          onMouseEnter={() => onMouseEnter(theme.text, theme.body)}
+          onMouseLeave={() => onMouseLeave(theme.body, theme.text)}
+        >
+          <i class="fas fa-arrow-down" id="arrow" aria-hidden="true" />
+        </div>
+      )}
 
       <div
         onClick={GoUpEvent}
