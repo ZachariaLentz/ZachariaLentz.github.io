@@ -98,8 +98,8 @@ const query_org = {
 
 const query_pinned_projects = {
   query: `
-	query { 
-	  user(login: "${openSource.githubUserName}") { 
+	query {
+	  user(login: "${openSource.githubUserName}") {
 	    pinnedItems(first: 6, types: REPOSITORY) {
 	      totalCount
 	      nodes{

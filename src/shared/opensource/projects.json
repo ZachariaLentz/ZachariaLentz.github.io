@@ -1,1 +1,70 @@
-{"data":[{"id":"MDEwOlJlcG9zaXRvcnkyNDU0NjcyNzQ=","name":"masterPortfolio","createdAt":"2020-03-06T16:26:54Z","url":"https://github.com/ashutosh1919/masterPortfolio","description":"The complete portfolio website hosted using github pages (gh-pages). Visit the website here : ","isFork":false,"languages":[{"name":"HTML","iconifyClass":"logos-html-5"},{"name":"CSS","iconifyClass":"logos-css-3"},{"name":"JavaScript","iconifyClass":"logos-javascript"}]},{"id":"MDEwOlJlcG9zaXRvcnkyNjkwNzUwMjM=","name":"truvisory","createdAt":"2020-06-03T11:53:55Z","url":"https://github.com/ashutosh1919/truvisory","description":"This project is meant to provide resources to users who want to access good LinkedIn posts which contains resources to learn any Technology, Design, Self-Branding, Motivation etc. You can visit project by:","isFork":false,"languages":[{"name":"HTML","iconifyClass":"logos-html-5"},{"name":"CSS","iconifyClass":"logos-css-3"},{"name":"JavaScript","iconifyClass":"logos-javascript"}]},{"id":"MDEwOlJlcG9zaXRvcnkyNzM1MTI1NTE=","name":"ml-data-bot","createdAt":"2020-06-19T14:24:55Z","url":"https://github.com/ashutosh1919/ml-data-bot","description":"Chatbot which helps you to get important statistics from the data to get insights to build Machine learning, Deep learning and Statistical models","isFork":false,"languages":[{"name":"Python","iconifyClass":"logos-python"}]},{"id":"MDEwOlJlcG9zaXRvcnkxNTU5NTE3NTk=","name":"Stock-Prediction-using-LSTM","createdAt":"2018-11-03T05:00:56Z","url":"https://github.com/ashutosh1919/Stock-Prediction-using-LSTM","description":"This Project is predicting stocks for 32 companies with error less than 1% using LSTM Networks.","isFork":false,"languages":[{"name":"Python","iconifyClass":"logos-python"},{"name":"Jupyter Notebook","iconifyClass":"logos-jupyter"}]},{"id":"MDEwOlJlcG9zaXRvcnkyMDIxNDc4ODA=","name":"Pick-Parser","createdAt":"2019-08-13T13:13:00Z","url":"https://github.com/dsc-iiitdmk/Pick-Parser","description":"This Project is to create a tool which can parse the Resumes and transform them into our own templates","isFork":false,"languages":[{"name":"Python","iconifyClass":"logos-python"}]},{"id":"MDEwOlJlcG9zaXRvcnkxODIxMjk3NTQ=","name":"Survival_3D_Game","createdAt":"2019-04-18T17:25:51Z","url":"https://github.com/ashutosh1919/Survival_3D_Game","description":"Survival Game using Unity3D","isFork":false,"languages":[{"name":"C#","iconifyClass":"logos-c-sharp"}]}]}
+{
+  "data": [
+    {
+      "id": "421599322",
+      "name": "Project_Catwalk",
+      "createdAt": "2021-10-26T22:14:15Z",
+      "url": "https://github.com/INGENIOUS-LY/Project_Catwalk",
+      "description": "The initial release will focus on providing the minimum viable product for our retail application. Features implemented will be constrained to the client experience which enables customers to search, browse, add to cart, and checkout. Visit the website here : ",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "HTML",
+          "iconifyClass": "logos-html-5"
+        },
+        {
+          "name": "CSS",
+          "iconifyClass": "logos-css-3"
+        },
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        }
+      ]
+    },
+    {
+      "id": "428489821",
+      "name": "Atelier-Reviews-API",
+      "createdAt": "2021-11-16T02:26:42Z",
+      "url": "https://github.com/Sunny-Sky-Tech/Atelier-Reviews-API",
+      "description": "Backend scaling/redesign of clothing retailer reviews API: ",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "JavaScript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "PostgreSQL",
+          "iconifyClass": "logos-postgresql"
+        },
+        {
+          "name": "AWS",
+          "iconifyClass": "logos-aws"
+        }
+      ]
+    },
+    {
+      "id": "436041980",
+      "name": "JobSite",
+      "createdAt": "2021-12-07T22:19:59Z",
+      "url": "https://github.com/PacificDevelopment/JobSite",
+      "description": "A mobile-first React web app for job seekers and employers alike",
+      "isFork": false,
+      "languages": [
+        {
+          "name": "Javascript",
+          "iconifyClass": "logos-javascript"
+        },
+        {
+          "name": "React",
+          "iconifyClass": "logos-react"
+        },
+        {
+          "name": "Javascript",
+          "iconifyClass": "logos-postgresql"
+        }
+      ]
+    }
+  ]
+}
