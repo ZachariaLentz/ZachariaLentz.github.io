@@ -63,22 +63,21 @@ export default function TopButton({ theme, skills }) {
 
   return (
     <>
-      {skills && (
-        <div
-          onClick={GoDownEvent}
-          id="downButton"
-          style={{
-            color: theme.body,
-            backgroundColor: theme.text,
-            border: `solid 1px ${theme.text}`,
-          }}
-          title="Go Down"
-          onMouseEnter={() => onMouseEnter(theme.text, theme.body)}
-          onMouseLeave={() => onMouseLeave(theme.body, theme.text)}
-        >
-          <i class="fas fa-arrow-down" id="arrow" aria-hidden="true" />
-        </div>
-      )}
+      <div
+        onClick={GoDownEvent}
+        id="downButton"
+        style={{
+          color: theme.body,
+          backgroundColor: theme.text,
+          border: `solid 1px ${theme.text}`,
+          visibility: skills ? "visible" : "hidden",
+        }}
+        title="Go Down"
+        onMouseEnter={() => onMouseEnter(theme.text, theme.body)}
+        onMouseLeave={() => onMouseLeave(theme.body, theme.text)}
+      >
+        <i class="fas fa-arrow-down" id="arrow" aria-hidden="true" />
+      </div>
 
       <div
         onClick={GoUpEvent}
