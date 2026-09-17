@@ -1,6 +1,6 @@
 {
-  "name": "ZachariasPortfolio",
-  "background_color": "#ffffff",
+  "name": "Zacharia Lentz — Maintenance & Reliability",
+  "background_color": "#f8fafc",
   "display": "standalone",
   "icons": [
     {
@@ -40,7 +40,7 @@
       "density": "4.0"
     }
   ],
-  "short_name": "Portfolio",
-  "start_url": ".",
-  "theme_color": "#000000"
+  "short_name": "Zacharia Lentz",
+  "start_url": "/",
+  "theme_color": "#1a202c"
 }
