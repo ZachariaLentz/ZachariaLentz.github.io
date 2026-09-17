@@ -1,573 +1,217 @@
-/* Change this file to get your personal Porfolio */
-
-// Website related settings
-const settings = {
-  isSplash: true, // Change this to false if you don't want Splash screen.
+const site = {
+  url: "https://zacharia.dev",
+  name: "Zacharia Lentz",
+  title: "Maintenance & Reliability Leader | CMMS Administration | Industrial Implementation",
+  description:
+    "Tesla Production Engineering Supervisor leading maintenance technicians across automated Powerwall production lines, with experience in reliability execution, CMMS administration, and industrial implementation.",
+  email: "zach0lentz@gmail.com",
+  phone: "(989) 941-5916",
+  linkedin: "https://www.linkedin.com/in/zacharia-lentz/",
+  github: "https://github.com/ZachariaLentz",
 };
 
-//SEO Related settings
-const seo = {
-  title: "Zacharia's Portfolio",
-  description: "Full Stack Software Engineer | JS | React | Node.js | SQL",
-  og: {
-    title: "Zacharia Lentz Portfolio",
-    type: "website",
-    url: "http://zacharia.dev/",
-  },
+const hero = {
+  eyebrow: "Industrial maintenance leadership, strengthened by systems expertise",
+  headline: site.title,
+  summary:
+    "Tesla Production Engineering Supervisor leading 20+ maintenance technicians across three automated Powerwall production lines. I bridge frontline maintenance, CMMS configuration, equipment commissioning, and technical delivery. Based in Sparks, Nevada; relocating home to the Midland, Michigan area.",
 };
 
-//Home Page
-const greeting = {
-  title: "Zacharia Lentz",
-  logo_name: "Zach Lentz",
-  nickname: "Zach",
-  subTitle: "Full Stack Software Engineer | JS | React | Node.js | SQL",
-  resumeLink:
-    "https://docs.google.com/document/d/1QAM08wgQGQ5DAivT-x_K99sfUkLDJxKBSFw_QLXYqjw/edit?usp=sharing",
-  portfolio_repository: "https://github.com/ZachariaLentz",
-  githubProfile: "https://github.com/ZachariaLentz",
-};
-
-const socialMediaLinks = [
-  /* Your Social Media Link */
-  // github: "https://github.com/ashutosh1919",
-  // linkedin: "https://www.linkedin.com/in/ashutosh-hathidara-88710b138/",
-  // gmail: "ashutoshhathidara98@gmail.com",
-  // gitlab: "https://gitlab.com/ashutoshhathidara98",
-  // facebook: "https://www.facebook.com/laymanbrother.19/",
-  // twitter: "https://twitter.com/ashutosh_1919",
-  // instagram: "https://www.instagram.com/layman_brother/"
-
-  {
-    name: "Github",
-    link: "https://github.com/ZachariaLentz",
-    fontAwesomeIcon: "fab fa-github", // Reference https://fontawesome.com/icons/github?style=brands
-    backgroundColor: "#181717", // Reference https://simpleicons.org/?q=github
-  },
-  {
-    name: "LinkedIn",
-    link: "https://www.linkedin.com/in/zacharia-lentz/",
-    fontAwesomeIcon: "fab fa-linkedin-in", // Reference https://fontawesome.com/icons/linkedin-in?style=brands
-    backgroundColor: "#0077B5", // Reference https://simpleicons.org/?q=linkedin
-  },
-  // {
-  //   name: "YouTube",
-  //   link: "https://www.youtube.com/channel/UC_amoXmmxSY9KusoDczDTXQ",
-  //   fontAwesomeIcon: "fa-youtube", // Reference https://fontawesome.com/icons/youtube?style=brands
-  //   backgroundColor: "#FF0000", // Reference https://simpleicons.org/?q=youtube
-  // },
-  {
-    name: "Gmail",
-    link: "mailto:zach0lentz@gmail.com",
-    fontAwesomeIcon: "fas fa-envelope", // Reference https://fontawesome.com/icons/google?style=brands
-    backgroundColor: "#D14836", // Reference https://simpleicons.org/?q=gmail
-  },
-  // {
-  //   name: "Twitter",
-  //   link: "https://twitter.com/ashutosh_1919",
-  //   fontAwesomeIcon: "fa-twitter", // Reference https://fontawesome.com/icons/twitter?style=brands
-  //   backgroundColor: "#1DA1F2", // Reference https://simpleicons.org/?q=twitter
-  // },
-  // {
-  //   name: "Facebook",
-  //   link: "https://www.facebook.com/laymanbrother.19/",
-  //   fontAwesomeIcon: "fa-facebook-f", // Reference https://fontawesome.com/icons/facebook-f?style=brands
-  //   backgroundColor: "#1877F2", // Reference https://simpleicons.org/?q=facebook
-  // },
-  // {
-  //   name: "Instagram",
-  //   link: "https://www.instagram.com/layman_brother/",
-  //   fontAwesomeIcon: "fa-instagram", // Reference https://fontawesome.com/icons/instagram?style=brands
-  //   backgroundColor: "#E4405F", // Reference https://simpleicons.org/?q=instagram
-  // },
+const credibility = [
+  { label: "Current role", value: "Production Engineering Supervisor" },
+  { label: "Team scope", value: "20+ maintenance technicians" },
+  { label: "Operations", value: "3 automated Powerwall lines" },
+  { label: "Systems", value: "Hands-on CMMS administration" },
+  { label: "Leadership depth", value: "≈5.5 years combined maintenance supervision" },
+  { label: "Foundation", value: "USMC CH-53E aviation maintenance" },
 ];
 
-const skills = {
-  data: [
-    {
-      title: "Front End",
-      fileName: "FullStackImg",
-      skills: [
-        "⚡ I Build resposive website front ends using React-Redux. I design projects to be mobile first, and user friendly.",
-      ],
-      softwareSkills: [
-        {
-          skillName: "HTML5",
-          fontAwesomeClassname: "simple-icons:html5",
-          style: {
-            color: "#E34F26",
-          },
-        },
-        {
-          skillName: "CSS3",
-          fontAwesomeClassname: "simple-icons:css3",
-          style: {
-            color: "#1572B6",
-          },
-        },
-        {
-          skillName: "JavaScript",
-          fontAwesomeClassname: "simple-icons:javascript",
-          style: {
-            backgroundColor: "#000000",
-            color: "#F7DF1E",
-          },
-        },
-        {
-          skillName: "ReactJS",
-          fontAwesomeClassname: "simple-icons:react",
-          style: {
-            color: "#61DAFB",
-          },
-        },
-      ],
-    },
-    {
-      title: "Back End",
-      fileName: "DataScienceImg",
-      skills: [
-        "⚡ I build optimized back ends using nodeJS, ExpressJS, and postgreSQL. I also have experience constructing backends using Python, and C#, as well as multiple database formats!",
-      ],
-      softwareSkills: [
-        {
-          skillName: "NPM",
-          fontAwesomeClassname: "simple-icons:npm",
-          style: {
-            color: "#c02127",
-          },
-        },
-        {
-          skillName: "NodeJS",
-          fontAwesomeClassname: "simple-icons:nodedotjs",
-          style: {
-            color: "#539d43",
-          },
-        },
-        {
-          skillName: "MySQL",
-          fontAwesomeClassname: "logos:mysql",
-          style: {},
-        },
-        {
-          skillName: "PostgreSQL",
-          fontAwesomeClassname: "simple-icons:postgresql",
-          style: {
-            backgroundColor: "#336790",
-            borderRadius: "10%",
-            color: "white",
-          },
-        },
-        {
-          skillName: "MongoDB",
-          fontAwesomeClassname: "simple-icons:mongodb",
-          style: {
-            color: "#499c4a",
-          },
-        },
-      ],
-    },
-    {
-      title: "Testing & Deployment",
-      fileName: "CloudInfraImg",
-      skills: [
-        "⚡ Test driven development using React-Testing Library, Jest, Mock Service Worker, and manty others. Scaled AWS deployments across multiple products including RDS, EC2, etc.",
-      ],
-      softwareSkills: [
-        {
-          skillName: "AWS",
-          fontAwesomeClassname: "logos:aws",
-          style: {},
-        },
-        {
-          skillName: "Docker",
-          fontAwesomeClassname: "logos:docker-icon",
-          style: {},
-        },
-        {
-          skillName: "Jest",
-          fontAwesomeClassname: "logos:jest",
-          style: {},
-        },
-        {
-          skillName: "React Testing Library",
-          fontAwesomeClassname: "logos:testing-library",
-          style: {
-            color: "#1488C6",
-          },
-        },
-      ],
-    },
-  ],
-};
-
-// Education Page
-const competitiveSites = {
-  competitiveSites: [
-    // {
-    //   siteName: "HackerRank",
-    //   iconifyClassname: "simple-icons:hackerrank",
-    //   style: {
-    //     color: "#2EC866",
-    //   },
-    //   profileLink: "https://www.hackerrank.com/layman_brother",
-    // },
-    // {
-    //   siteName: "Codechef",
-    //   iconifyClassname: "simple-icons:codechef",
-    //   style: {
-    //     color: "#5B4638",
-    //   },
-    //   profileLink: "https://www.codechef.com/users/ashutosh_1919",
-    // },
-    // {
-    //   siteName: "Codeforces",
-    //   iconifyClassname: "simple-icons:codeforces",
-    //   style: {
-    //     color: "#1F8ACB",
-    //   },
-    //   profileLink: "http://codeforces.com/profile/layman_brother",
-    // },
-    // {
-    //   siteName: "Hackerearth",
-    //   iconifyClassname: "simple-icons:hackerearth",
-    //   style: {
-    //     color: "#323754",
-    //   },
-    //   profileLink: "https://www.hackerearth.com/@ashutosh391",
-    // },
-    // {
-    //   siteName: "Kaggle",
-    //   iconifyClassname: "simple-icons:kaggle",
-    //   style: {
-    //     color: "#20BEFF",
-    //   },
-    //   profileLink: "https://www.kaggle.com/laymanbrother",
-    // },
-  ],
-};
-
-const degrees = {
-  degrees: [
-    // {
-    //   title: "Indian Institute of Information Technology Kurnool",
-    //   subtitle: "B.Tech. in Computer Engineering",
-    //   logo_path: "iiitk_logo.png",
-    //   alt_name: "IIITDM Kurnool",
-    //   duration: "2016 - Present",
-    //   descriptions: [
-    //     "⚡ I have studied basic software engineering subjects like DS, Algorithms, DBMS, OS, CA, AI etc.",
-    //     "⚡ Apart from this, I have done courses on Deep Learning, Data Science, Cloud Computing and Full Stack Development.",
-    //     "⚡ I was selected for Merit cum Means Scholarship which is given to top 10% of students in college. I have received award from respected director for consistently best performance in academics.",
-    //   ],
-    //   website_link: "http://iiitk.ac.in",
-    // },
-  ],
-};
-
-const certifications = {
-  certifications: [
-    // {
-    //   title: "Machine Learning",
-    //   subtitle: "- Andrew Ng",
-    //   logo_path: "stanford_logo.png",
-    //   certificate_link:
-    //     "https://www.coursera.org/account/accomplishments/verify/22MTSSC5WDTM",
-    //   alt_name: "Stanford University",
-    //   color_code: "#8C151599",
-    // },
-    // {
-    //   title: "Deep Learning",
-    //   subtitle: "- Andrew Ng",
-    //   logo_path: "deeplearning_ai_logo.png",
-    //   certificate_link:
-    //     "https://www.coursera.org/account/accomplishments/specialization/H8CPSFXAJD2G",
-    //   alt_name: "deeplearning.ai",
-    //   color_code: "#00000099",
-    // },
-    // {
-    //   title: "ML on GCP",
-    //   subtitle: "- GCP Training",
-    //   logo_path: "google_logo.png",
-    //   certificate_link:
-    //     "https://www.coursera.org/account/accomplishments/specialization/EB4VJARK8647",
-    //   alt_name: "Google",
-    //   color_code: "#0C9D5899",
-    // },
-    // {
-    //   title: "Data Science",
-    //   subtitle: "- Alex Aklson",
-    //   logo_path: "ibm_logo.png",
-    //   certificate_link:
-    //     "https://www.coursera.org/account/accomplishments/specialization/PLEAPCSJBZT5",
-    //   alt_name: "IBM",
-    //   color_code: "#1F70C199",
-    // },
-    // {
-    //   title: "Big Data",
-    //   subtitle: "- Kim Akers",
-    //   logo_path: "microsoft_logo.png",
-    //   certificate_link:
-    //     "https://drive.google.com/file/d/164zKCFOsI4vGqokc-Qj-e_D00kLDHIrG/view",
-    //   alt_name: "Microsoft",
-    //   color_code: "#D83B0199",
-    // },
-    // {
-    //   title: "Advanced Data Science",
-    //   subtitle: "- Romeo Kienzler",
-    //   logo_path: "ibm_logo.png",
-    //   certificate_link:
-    //     "https://www.coursera.org/account/accomplishments/verify/BH2T9BRU87BH",
-    //   alt_name: "IBM",
-    //   color_code: "#1F70C199",
-    // },
-    // {
-    //   title: "Advanced ML on GCP",
-    //   subtitle: "- GCP Training",
-    //   logo_path: "google_logo.png",
-    //   certificate_link:
-    //     "https://www.coursera.org/account/accomplishments/verify/5JZZM7TNQ2AV",
-    //   alt_name: "Google",
-    //   color_code: "#0C9D5899",
-    // },
-    // {
-    //   title: "DL on Tensorflow",
-    //   subtitle: "- Laurence Moroney",
-    //   logo_path: "deeplearning_ai_logo.png",
-    //   certificate_link:
-    //     "https://www.coursera.org/account/accomplishments/verify/6T4DCUGNK8J8",
-    //   alt_name: "deeplearning.ai",
-    //   color_code: "#00000099",
-    // },
-    // {
-    //   title: "Fullstack Development",
-    //   subtitle: "- Jogesh Muppala",
-    //   logo_path: "coursera_logo.png",
-    //   certificate_link:
-    //     "https://www.coursera.org/account/accomplishments/certificate/NRANJA66Y2YA",
-    //   alt_name: "Coursera",
-    //   color_code: "#2A73CC",
-    // },
-    // {
-    //   title: "Kuberenetes on GCP",
-    //   subtitle: "- Qwiklabs",
-    //   logo_path: "gcp_logo.png",
-    //   certificate_link:
-    //     "https://google.qwiklabs.com/public_profiles/e4d5a92b-faf6-4679-a70b-a9047c0cd750",
-    //   alt_name: "GCP",
-    //   color_code: "#4285F499",
-    // },
-    // {
-    //   title: "Cryptography",
-    //   subtitle: "- Saurabh Mukhopadhyay",
-    //   logo_path: "nptel_logo.png",
-    //   certificate_link:
-    //     "https://drive.google.com/open?id=1z5ExD_QJVdU0slLkp8CBqSF3-C3g-ro_",
-    //   alt_name: "NPTEL",
-    //   color_code: "#FFBB0099",
-    // },
-    // {
-    //   title: "Cloud Architecture",
-    //   subtitle: "- Qwiklabs",
-    //   logo_path: "gcp_logo.png",
-    //   certificate_link:
-    //     "https://google.qwiklabs.com/public_profiles/5fab4b2d-be6f-408c-8dcb-6d3b58ecb4a2",
-    //   alt_name: "GCP",
-    //   color_code: "#4285F499",
-    // },
-  ],
-};
-
-// Experience Page
-const experience = {
-  // title: "Experience",
-  // subtitle: "Work, Internship and Volunteership",
-  // description:
-  //   "I have worked with many evolving startups as ML and DL Developer, Designer and Software Architect. I have also worked with some well established companies mostly as AI Developer. I love organising events and that is why I am also involved with many opensource communities as a representative.",
-  // header_image_path: "experience.svg",
-  // sections: [
-  //   {
-  //     title: "Work",
-  //     experiences: [
-  //       {
-  //         title: "Associate AI Engineer",
-  //         company: "Legato Health Technology",
-  //         company_url: "https://legatohealthtech.com/",
-  //         logo_path: "legato_logo.png",
-  //         duration: "June 2020 - PRESENT",
-  //         location: "Hyderabad, Telangana",
-  //         description:
-  //           "I am working on automating healthcare products. The projects involve automation for process improvements and for significantly enhancing the profits. I am currently working on Cancer Survival and Reoccurence Prediction. Our goal is to make AI system which scales and removes doctor dependency as much as possible.",
-  //         color: "#0879bf",
-  //       },
-  //       {
-  //         title: "Android and ML Developer",
-  //         company: "Muffito Incorporation",
-  //         company_url: "https://www.linkedin.com/company/muffito-inc/about/",
-  //         logo_path: "muffito_logo.png",
-  //         duration: "May 2018 - Oct 2018",
-  //         location: "Pune, Maharashtra",
-  //         description:
-  //           "I have created complete Android Application for locating Pub, Bar and beverage shops around you. I have also worked on implementation of algorithms for Face Detection, Text extraction from Image. I was involved in a team for creating complete software architecure of mobile and web application as well as admin panel for company.",
-  //         color: "#9b1578",
-  //       },
-  //       {
-  //         title: "Android Developer",
-  //         company: "FreeCopy Pvt. Ltd.",
-  //         company_url: "https://www.linkedin.com/company/freecopy/about/",
-  //         logo_path: "freecopy_logo.png",
-  //         duration: "Nov 2017 - Dec 2017",
-  //         location: "Ahmedabad, Gujarat",
-  //         description:
-  //           "FreeCopy is the Start up from Indian Institute of Management, Ahmedabad. I have changed the integration of the whole app from Google to Firebase. I learnt the efﬁcient ways of Data communications like Retroﬁt, Eventbus etc. I experienced the real time start up. I learnt the Design thinking of UI on perspective of People.",
-  //         color: "#fc1f20",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "Internships",
-  //     experiences: [
-  //       {
-  //         title: "Data Science Research Intern",
-  //         company: "Delhivery Pvt. Ltd.",
-  //         company_url: "https://www.delhivery.com/",
-  //         logo_path: "delhivery_logo.png",
-  //         duration: "May 2019 - Sept 2019",
-  //         location: "Gurgaon, Haryana",
-  //         description:
-  //           "I have worked on project of predicting freight rates based on previous data. There were two objectives: (1) To build a forecasting engine to predict daily freight rates. (2) To embed feature in the model which can explain the seasonal major changes in freight rate based on regions and locations. I have closely worked with deep learning models in combination with statistical methods to create solution for this. At the end of internship, I had created model deployed on AWS EC2 with the use of Kafka stream jobs, ElasticSearch and PostgreSQL.",
-  //         color: "#ee3c26",
-  //       },
-  //       {
-  //         title: "Data Science Intern",
-  //         company: "Intel Indexer LLC",
-  //         company_url:
-  //           "https://opencorporates.com/companies/us_dc/EXTUID_4170286",
-  //         logo_path: "intel_logo.jpg",
-  //         duration: "Nov 2018 - Dec 2018",
-  //         location: "Work From Home",
-  //         description:
-  //           "This is financial Solution Company. I have made Supervised Learning model for the company which can perform time series analysis on Stock price data for 32 companies. I have built LSTM Neural Networks Model and trained the data of 32 companies for last 2 years. This model is also used for forecasting.",
-  //         color: "#0071C5",
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     title: "Volunteerships",
-  //     experiences: [
-  //       {
-  //         title: "Google Explore ML Facilitator",
-  //         company: "Google",
-  //         company_url: "https://about.google/",
-  //         logo_path: "google_logo.png",
-  //         duration: "June 2019 - April 2020",
-  //         location: "Hyderabad, Telangana",
-  //         description:
-  //           "Explore Machine Learning (ML) is a Google-sponsored program for university students to get started with Machine Learning. The curriculum offers 3 tracks of ML Content (Beginner, Intermediate, Advanced) and relies on university student facilitators to train other students on campus and to build opensource projects under this program.",
-  //         color: "#4285F4",
-  //       },
-  //       {
-  //         title: "Microsoft Student Partner",
-  //         company: "Microsoft",
-  //         company_url: "https://www.microsoft.com/",
-  //         logo_path: "microsoft_logo.png",
-  //         duration: "Aug 2019 - May 2020",
-  //         location: "Hyderabad, Telangana",
-  //         description:
-  //           "Microsoft Student Partner is a program for university students to lead the awareness and use of Cloud especially Azure tools in the development of their projects and startups. Under this program, I have organised hands on workshops and seminars to teach Cloud Computing concepts to students.",
-  //         color: "#D83B01",
-  //       },
-  //       {
-  //         title: "Mozilla Campus Captain",
-  //         company: "Mozilla",
-  //         company_url: "https://www.mozilla.org/",
-  //         logo_path: "mozilla_logo.png",
-  //         duration: "Oct 2019 - May 2020",
-  //         location: "Kurnool, Andhra Pradesh",
-  //         description:
-  //           "My responsibility for this program was to create opensource environment in college and in the city. We have organised multiple hackathons on the problems collected by ordinary people from Kurnool city. We have build opensource community of our own college. The community is available at dsc_iiitdmk on github.",
-  //         color: "#000000",
-  //       },
-  //       {
-  //         title: "Developer Students Club Member",
-  //         company: "DSC IIITDM Kurnool",
-  //         company_url:
-  //           "https://www.linkedin.com/company/developer-students-club-iiitdm-kurnool",
-  //         logo_path: "dsc_logo.png",
-  //         duration: "Jan 2018 - May 2020",
-  //         location: "Kurnool, Andhra Pradesh",
-  //         description:
-  //           "We have well established developer club in college which is directly associated with Google Developers. We have developed many interdisciplinary projects under the membership of this club. We have organised workshops and activities on Android Application Development, Flutter and React JS.",
-  //         color: "#0C9D58",
-  //       },
-  //       {
-  //         title: "Developer Program Member",
-  //         company: "Github",
-  //         company_url: "https://github.com/",
-  //         logo_path: "github_logo.png",
-  //         duration: "July 2019 - PRESENT",
-  //         location: "Work From Home",
-  //         description:
-  //           "I am actively contributing to many opensource projects. I have contributed to projects of organisations like Tensorflow, Uber, Facebook, Google, Scikit-learn, Kiwix, Sympy, Python, NVLabs, Fossasia, Netrack, Keras etc. These contributions include bug fixes, feature requests and formulating proper documentation for project.",
-  //         color: "#181717",
-  //       },
-  //     ],
-  //   },
-  // ],
-};
-
-// Projects Page
-const projectsHeader = {
-  title: "Projects",
-  description:
-    "My projects makes use of a variety of the latest technology and tools.",
-  avatar_image_path: "projects_image.svg",
-};
-
-// const publicationsHeader = {
-//   title: "Publications",
-//   description:
-//     "I have worked on and published a few research papers and publications of my own.",
-//   avatar_image_path: "projects_image.svg",
-// };
-
-// Contact Page
-const contactPageData = {
-  contactSection: {
-    title: "Contact Me",
-    profile_image_path: "Zacharia.png",
-    description:
-      "I am currently looking for a Software Engineering position. I am available to talk most days. Reach out and I will reply within 24 hours to schedule a time!",
+const experience = [
+  {
+    title: "Production Engineering Supervisor - Energy Maintenance",
+    company: "Tesla",
+    duration: "April 2024–Present",
+    location: "Gigafactory Nevada · Sparks, Nevada",
+    summary:
+      "Lead 20+ maintenance technicians on one of four rotating shifts supporting three automated Powerwall production lines.",
+    highlights: [
+      "Set daily priorities for preventive and corrective maintenance, equipment recovery, passdowns, and reliability work.",
+      "Coordinate root-cause investigations and execution with Production, Engineering, and Controls partners.",
+      "Hired, onboarded, and trained 15+ technicians; developed technicians into shift-leader roles.",
+      "Administer CMMS settings, custom views and filters, user roles and permissions, configuration validation, and preventive-maintenance creation and scheduling.",
+      "Inspected and qualified an automation line in Italy, authored 58 Jira requests, and supported later U.S. startup and commissioning.",
+      "Built Python dashboards from internal databases for near-real-time KPI, downtime-trend, and shift-performance visibility.",
+      "Helped move A-shift from lowest- to highest-performing in build-plan achievement; no unsupported percentage or cost claim is made.",
+    ],
   },
-  // blogSection: {
-  //   title: "Blogs",
-  //   subtitle:
-  //     "For individual fundamental empowerment, I like to write powerful lessons that create impact on each of the reader individually to change the core of their character.",
-  //   link: "https://ashutoshhathidara.wordpress.com",
-  //   avatar_image_path: "blogs_image.svg",
-  // },
-  addressSection: {
-    title: "Address",
-    subtitle: "Reno, Nevada",
-    avatar_image_path: "address_image.svg",
-    location_map_link: "https://goo.gl/maps/JM6mcpo69AiTN6qn6",
+  {
+    title: "Energy Equipment Maintenance Technician",
+    company: "Tesla",
+    duration: "March 2023–April 2024",
+    location: "Gigafactory Nevada · Sparks, Nevada",
+    summary:
+      "Supported automated energy-manufacturing equipment through troubleshooting, recovery, preventive maintenance, and startup work.",
+    highlights: [
+      "Worked across mechanical, pneumatic, hydraulic, sensor, conveyor, servo, and production-fixture systems.",
+      "Used CMMS work orders to document repairs, preventive maintenance, recurring failures, and corrective actions.",
+      "Collaborated with NPI teams on equipment builds, troubleshooting, testing, and commissioning support.",
+    ],
   },
-  phoneSection: {
-    title: "Phone Number",
-    subtitle: "(989) 941-5916",
+  {
+    title: "Field Service Electrician",
+    company: "Blue Raven Solar",
+    duration: "March 2022–March 2023",
+    location: "Northern Nevada",
+    summary:
+      "Served as the sole field-service technician for solar-system diagnostics, repair, commissioning, and customer-facing technical support across northern Nevada.",
+    highlights: [
+      "Owned on-site troubleshooting and communicated technical findings in practical terms.",
+      "Worked independently while coordinating follow-up work with operations and customers.",
+    ],
   },
+  {
+    title: "Equipment Maintenance Technician, Fixtures",
+    company: "Tesla",
+    duration: "March 2020–November 2021",
+    location: "Gigafactory Nevada · Sparks, Nevada",
+    summary:
+      "Maintained and troubleshot production fixtures and associated mechanical and pneumatic systems.",
+    highlights: [
+      "Executed preventive and corrective maintenance on production tooling and fixtures.",
+      "Used a FARO Arm for dimensional verification, alignment, and geometry checks supporting mechanical correction.",
+      "Created a centralized maintenance-documentation dashboard for technician access to specifications and procedures.",
+    ],
+  },
+  {
+    title: "MOS 6113 CH-53E Helicopter Mechanic / Maintenance Leadership",
+    company: "United States Marine Corps",
+    duration: "December 2013–December 2018",
+    location: "Multiple duty locations",
+    summary:
+      "Maintained CH-53E aircraft in safety-critical operations and advanced to Sergeant (E-5), Collateral Duty Inspector, aerial observer, and desk-sergeant responsibilities.",
+    highlights: [
+      "Performed inspection, troubleshooting, preventive maintenance, and repair within military aviation-maintenance controls.",
+      "Led maintenance personnel and coordinated work priorities, passdowns, and operational readiness as a desk sergeant.",
+      "Verified maintenance quality and procedural compliance as a Collateral Duty Inspector.",
+    ],
+  },
+];
+
+const caseStudies = [
+  {
+    id: "maintenance-leadership",
+    title: "Maintenance Leadership and Reliability Execution",
+    deck: "Coordinating people, priorities, and equipment work in a rotating-shift production environment.",
+    category: "Maintenance leadership",
+    context:
+      "Three automated Powerwall production lines operate across four rotating shifts. Zacharia leads 20+ maintenance technicians on one of those shifts.",
+    problem:
+      "The team must balance urgent equipment recovery with preventive work, reliable passdowns, technician development, and longer-term reliability priorities.",
+    role:
+      "Production Engineering Supervisor responsible for shift execution, technician leadership, work prioritization, and cross-functional coordination.",
+    actions: [
+      "Set daily priorities across preventive work, corrective work, equipment recovery, and reliability follow-up.",
+      "Use passdowns and CMMS records to preserve context between rotating shifts.",
+      "Coordinate structured root-cause investigation with Production, Engineering, and Controls partners.",
+      "Hire, onboard, and train technicians; more than 15 technicians have been brought into the organization under Zacharia’s current supervision.",
+    ],
+    outcome:
+      "Verified result: Zacharia helped move A-shift from lowest- to highest-performing in build-plan achievement while maintaining coverage through headcount reductions. Employer production figures, percentages, downtime data, and cost claims are intentionally not published.",
+    skills: ["Shift leadership", "Reliability execution", "Work prioritization", "Root-cause investigation", "Technician development"],
+    artifact: {
+      title: "Generic maintenance work lifecycle",
+      note: "Original, sanitized model—not an employer process or screenshot.",
+      steps: ["Detect & make safe", "Triage & assign", "Diagnose", "Repair & verify", "Document & pass down", "Review recurrence"],
+    },
+  },
+  {
+    id: "cmms-administration",
+    title: "CMMS Administration and Maintenance Workflow Design",
+    deck: "Configuring maintenance systems around technician work while preserving governance and useful records.",
+    category: "Maintenance systems",
+    context:
+      "A rotating-shift maintenance organization needs consistent work visibility, practical technician views, controlled access, and preventive-maintenance scheduling.",
+    problem:
+      "Poor configuration creates friction: technicians cannot find the right work, permissions become inconsistent, and preventive tasks lose operational context.",
+    role:
+      "Direct CMMS administrator and frontline maintenance leader who understands both configuration decisions and daily technician use.",
+    actions: [
+      "Configure settings and validate both his own and other users’ configurations before broad use.",
+      "Build custom views and filters around roles, priorities, ownership, and shift needs.",
+      "Manage user roles and permissions with least-access and usability tradeoffs in mind.",
+      "Create and schedule preventive-maintenance work with clear scope and ownership.",
+      "Document workflows and reinforce adoption through technician training.",
+    ],
+    outcome:
+      "Verified boundary: Zacharia directly performs these administrative activities in support of maintenance operations. The system name, employer configuration, records, adoption metrics, and internal data are confidential and are not reproduced here.",
+    skills: ["CMMS configuration", "Workflow design", "Roles & permissions", "PM governance", "Training & documentation"],
+    artifact: {
+      title: "Synthetic PM governance loop",
+      note: "Fictional example showing the decision cycle, not a production configuration.",
+      steps: ["Define failure mode", "Draft task & standard", "Assign owner & cadence", "Pilot", "Review findings", "Revise or retire"],
+    },
+  },
+  {
+    id: "equipment-qualification",
+    title: "Equipment Qualification, Commissioning, and Technical Issue Management",
+    deck: "Turning equipment observations into traceable issues before shipment and useful context during startup.",
+    category: "Equipment readiness",
+    context:
+      "New automated equipment was inspected and qualified in Italy before shipment to a U.S. manufacturing site.",
+    problem:
+      "Mechanical, electrical, controls, and operational findings needed clear documentation, ownership, and follow-through before shipment and during startup.",
+    role:
+      "Maintenance technical contributor—not project owner—supporting inspection, qualification, issue documentation, and later U.S. startup and commissioning.",
+    actions: [
+      "Inspect equipment behavior and maintainability during pre-shipment qualification.",
+      "Translate observations into 58 detailed, traceable Jira requests for engineering review.",
+      "Coordinate clarification and follow-through across technical disciplines.",
+      "Carry equipment history into U.S. startup and commissioning support.",
+    ],
+    outcome:
+      "Verified result: 58 documented findings entered the issue-management workflow before shipment, and Zacharia carried that equipment context into U.S. startup support. Project-level schedule, cost, production, and acceptance outcomes are not claimed.",
+    skills: ["Equipment inspection", "Qualification support", "Technical writing", "Issue management", "Commissioning support"],
+    artifact: {
+      title: "Sanitized qualification checklist",
+      note: "Original checklist structure using no employer specifications or proprietary criteria.",
+      steps: ["Safety & guarding", "Mechanical condition", "Utilities & interfaces", "Sequence observation", "Maintainability", "Issue evidence & owner"],
+    },
+  },
+];
+
+const demonstrationProject = {
+  title: "CMMS Implementation Blueprint",
+  label: "Self-directed demonstration using fictional/synthetic data",
+  summary:
+    "A transparent example of how Zacharia would structure an implementation. This is not a client engagement and contains no employer data or proprietary system configuration.",
+  phases: [
+    { title: "1. Discover", detail: "Interview maintenance, operations, planners, administrators, and leaders; map current pain points and define decision rights." },
+    { title: "2. Prepare data", detail: "Inventory fictional assets, locations, naming standards, criticality, parts, and source-data quality; document migration rules." },
+    { title: "3. Configure workflows", detail: "Define request, approval, planning, assignment, execution, verification, closure, and exception paths." },
+    { title: "4. Set access", detail: "Create technician, planner, supervisor, administrator, and read-only roles; test permissions against real task scenarios." },
+    { title: "5. Build PM program", detail: "Map legacy tasks, normalize instructions, assign assets and owners, set initial cadence, and establish review governance." },
+    { title: "6. Pilot and validate", detail: "Run a limited synthetic pilot, record defects and usability friction, validate reports, and control configuration changes." },
+    { title: "7. Train and launch", detail: "Deliver role-based technician and administrator training, go-live support, escalation paths, and concise job aids." },
+    { title: "8. Measure adoption", detail: "Track fictional indicators such as login completion, work-order data completeness, PM execution, backlog hygiene, and support themes." },
+  ],
 };
 
-export {
-  settings,
-  seo,
-  greeting,
-  socialMediaLinks,
-  skills,
-  competitiveSites,
-  degrees,
-  certifications,
-  experience,
-  projectsHeader,
-  // publicationsHeader,
-  contactPageData,
+const credentials = [
+  { title: "MOS 6113", detail: "CH-53E helicopter mechanic, United States Marine Corps" },
+  { title: "Sergeant (E-5)", detail: "Military maintenance leadership" },
+  { title: "Collateral Duty Inspector", detail: "Maintenance quality and procedural-compliance responsibility" },
+  { title: "Aerial observer and desk sergeant", detail: "Supported flight operations and approximately three years of aviation-maintenance leadership" },
+  { title: "Aviation maintenance supervisor training", detail: "Aviation Maintenance Workcenter Supervisor training and Naval Aviation Organizational Maintenance Activity Work Center Supervisor’s Course" },
+  { title: "CH-53E maintenance training", detail: "Organizational maintenance, aircraft turbine-engine maintenance, helicopter power-train maintenance, and hydraulic-systems repair" },
+  { title: "Hack Reactor", detail: "Certificate, Full Stack Software Engineering · September–December 2021 · 1,000+ hours" },
+  { title: "Sabio", detail: "Certificate in Software Engineering · October–December 2018" },
+];
+
+const contact = {
+  summary:
+    "Open to maintenance leadership, reliability, maintenance planning, facilities or operations leadership, and adjacent industrial implementation roles.",
+  location: "Sparks, Nevada",
+  relocation: "Relocating home to the Midland, Michigan area.",
 };
+
+export { site, hero, credibility, experience, caseStudies, demonstrationProject, credentials, contact };

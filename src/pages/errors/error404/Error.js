@@ -1,39 +1,21 @@
-import React, { Component } from "react";
-import Header from "../../../components/header/Header";
-import Footer from "../../../components/footer/Footer";
-import TopButton from "../../../components/topButton/TopButton";
-import { Fade } from "react-reveal";
-import "./Error.css";
-import { Link } from "react-router-dom";
+import React from "react";
+import Layout, { Main } from "../../../components/site/Layout";
+import PageMeta from "../../../components/site/PageMeta";
+import { Actions, ButtonLink, Eyebrow, Intro, PageTitle, SecondaryButtonLink } from "../../../components/site/UI";
 
-export default class Error extends Component {
-  render() {
-    const theme = this.props.theme;
-    return (
-      <div className="error-main">
-        <Header theme={this.props.theme} />
-        <div className="error-class">
-          <Fade bottom duration={2000} distance="40px">
-            <h1>Woops</h1>
-            <h1 className="error-404">404</h1>
-            <p>The requested page is unavailable at the moment!</p>
-            <Link
-              className="main-button"
-              to="/home"
-              style={{
-                color: theme.body,
-                backgroundColor: theme.text,
-                border: `solid 1px ${theme.text}`,
-                display: "inline-flex",
-              }}
-            >
-              Go Home
-            </Link>
-          </Fade>
-        </div>
-        <Footer theme={this.props.theme} />
-        <TopButton theme={this.props.theme} />
-      </div>
-    );
-  }
+export default function Error404() {
+  return (
+    <Layout>
+      <PageMeta title="Page Not Found" description="The requested page could not be found." path="/not-found" />
+      <Main id="main-content">
+        <Eyebrow>Error 404</Eyebrow>
+        <PageTitle>That page is not available.</PageTitle>
+        <Intro>Use the links below to return to Zacharia’s experience or proof of work.</Intro>
+        <Actions>
+          <ButtonLink to="/">Return home</ButtonLink>
+          <SecondaryButtonLink to="/proof-of-work">View Proof of Work</SecondaryButtonLink>
+        </Actions>
+      </Main>
+    </Layout>
+  );
 }

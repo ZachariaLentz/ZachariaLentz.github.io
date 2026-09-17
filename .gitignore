@@ -9,6 +9,9 @@
 # testing
 /coverage
 
+# private local source review (never commit or deploy)
+/local-review
+
 
 
 # misc

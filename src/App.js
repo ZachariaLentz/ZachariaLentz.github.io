@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Main from "./containers/Main";
 import { ThemeProvider } from "styled-components";
 import { chosenTheme } from "./theme";
@@ -10,9 +9,7 @@ function App() {
     <ThemeProvider theme={chosenTheme}>
       <>
         <GlobalStyles />
-        <div>
-          <Main theme={chosenTheme} />
-        </div>
+        <Main />
       </>
     </ThemeProvider>
   );
