@@ -3,15 +3,46 @@ import { Navigate, useParams } from "react-router";
 import styled from "styled-components";
 import Layout, { Main } from "../../components/site/Layout";
 import PageMeta from "../../components/site/PageMeta";
-import { ButtonLink, Eyebrow, Intro, List, PageTitle, Section, SectionTitle, Tag } from "../../components/site/UI";
-import { caseStudies } from "../../portfolio";
+import {
+  ButtonLink,
+  Eyebrow,
+  Intro,
+  List,
+  PageTitle,
+  Section,
+  SectionTitle,
+  Tag,
+} from "../../components/site/UI";
+import SoftwareSections from "./SoftwareSections";
+import { caseStudies, site } from "../../portfolio";
+
+const Notice = styled.aside`
+  margin: 2rem 0;
+  padding: 1.25rem;
+  border-left: 4px solid ${({ theme }) => theme.secondary};
+  border-radius: ${({ theme }) => theme.radiusMd};
+  background: ${({ theme }) => theme.surfaceAlt};
+  p {
+    margin: 0;
+    color: ${({ theme }) => theme.textPrimary};
+  }
+`;
+
+const Contents = styled.nav`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 2rem;
+`;
 
 const DetailGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
 
-  @media (max-width: 720px) { grid-template-columns: 1fr; }
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Artifact = styled.figure`
@@ -20,8 +51,16 @@ const Artifact = styled.figure`
   border-radius: ${({ theme }) => theme.radiusLg};
   background: ${({ theme }) => theme.primary};
 
-  figcaption { margin-bottom: 1.25rem; color: ${({ theme }) => theme.textInverse}; }
-  figcaption span { display: block; margin-top: 0.35rem; color: #cbd5e1; font-size: 0.9rem; }
+  figcaption {
+    margin-bottom: 1.25rem;
+    color: ${({ theme }) => theme.textInverse};
+  }
+  figcaption span {
+    display: block;
+    margin-top: 0.35rem;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+  }
 `;
 
 const Flow = styled.ol`
@@ -50,7 +89,9 @@ const Flow = styled.ol`
     content: counter(artifact-step, decimal-leading-zero);
   }
 
-  @media (max-width: 650px) { grid-template-columns: 1fr; }
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Skills = styled.ul`
@@ -60,7 +101,12 @@ const Skills = styled.ul`
   padding: 0;
   list-style: none;
 
-  li { padding: 0.55rem 0.8rem; border-radius: ${({ theme }) => theme.radiusFull}; background: ${({ theme }) => theme.surfaceAlt}; font-weight: 700; }
+  li {
+    padding: 0.55rem 0.8rem;
+    border-radius: ${({ theme }) => theme.radiusFull};
+    background: ${({ theme }) => theme.surfaceAlt};
+    font-weight: 700;
+  }
 `;
 
 export default function CaseStudyPage() {
@@ -68,44 +114,118 @@ export default function CaseStudyPage() {
   const study = caseStudies.find((item) => item.id === id);
   if (!study) return <Navigate to="/not-found" replace />;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: study.title,
+    description: study.seo?.description || study.deck,
+    url: `${site.url}/case-studies/${study.id}`,
+    author: { "@type": "Person", name: site.name },
+  };
+
   return (
     <Layout>
-      <PageMeta title={study.title} description={study.deck} path={`/case-studies/${study.id}`} type="article" />
+      <PageMeta
+        title={study.seo?.title || study.title}
+        description={study.seo?.description || study.deck}
+        path={`/case-studies/${study.id}`}
+        type="article"
+        jsonLd={jsonLd}
+      />
       <Main id="main-content">
-        <Eyebrow>Sanitized case study</Eyebrow>
+        <Eyebrow>{study.eyebrow || "Sanitized case study"}</Eyebrow>
         <Tag>{study.category}</Tag>
         <PageTitle>{study.title}</PageTitle>
         <Intro>{study.deck}</Intro>
 
-        <Section>
+        {study.confidentiality && (
+          <Notice role="note" aria-label="Confidentiality">
+            <p>{study.confidentiality}</p>
+          </Notice>
+        )}
+        {study.format === "software" && (
+          <Contents aria-label="On this page">
+            <a href="#context">Problem</a>
+            <a href="#role">My role</a>
+            <a href="#development">Development</a>
+            <a href="#evolution">Evolution</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#workflows">Workflows</a>
+            <a href="#handoff">Shift handoff</a>
+            <a href="#design">Design</a>
+            <a href="#validation">Review and testing</a>
+            <a href="#outcome">Outcome</a>
+          </Contents>
+        )}
+        <Section id="context">
           <DetailGrid>
-            <div><SectionTitle>Context</SectionTitle><p>{study.context}</p></div>
-            <div><SectionTitle>Problem</SectionTitle><p>{study.problem}</p></div>
+            <div>
+              <SectionTitle>Context</SectionTitle>
+              <p>{study.context}</p>
+            </div>
+            <div>
+              <SectionTitle>Problem</SectionTitle>
+              <p>{study.problem}</p>
+            </div>
           </DetailGrid>
         </Section>
-        <Section>
-          <SectionTitle>Zacharia’s role</SectionTitle>
-          <p>{study.role}</p>
+        <Section id="role">
+          <SectionTitle>
+            {study.ownership?.title || "Zacharia’s role"}
+          </SectionTitle>
+          {study.ownership ? (
+            <List>
+              {study.ownership.responsibilities.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </List>
+          ) : (
+            <p>{study.role}</p>
+          )}
         </Section>
-        <Section>
-          <SectionTitle>Actions taken</SectionTitle>
-          <List>{study.actions.map((action) => <li key={action}>{action}</li>)}</List>
-        </Section>
-        <Section>
-          <SectionTitle>Verified result or outcome boundary</SectionTitle>
+        <SoftwareSections study={study} />
+        {study.actions && (
+          <Section>
+            <SectionTitle>Actions taken</SectionTitle>
+            <List>
+              {study.actions.map((action) => (
+                <li key={action}>{action}</li>
+              ))}
+            </List>
+          </Section>
+        )}
+        <Section id="outcome">
+          <SectionTitle>
+            {study.format === "software"
+              ? "Outcome and evidence boundary"
+              : "Verified result or outcome boundary"}
+          </SectionTitle>
           <p>{study.outcome}</p>
         </Section>
         <Section>
           <SectionTitle>Skills demonstrated</SectionTitle>
-          <Skills>{study.skills.map((skill) => <li key={skill}>{skill}</li>)}</Skills>
+          <Skills>
+            {study.skills.map((skill) => (
+              <li key={skill}>{skill}</li>
+            ))}
+          </Skills>
         </Section>
-        <Section>
-          <SectionTitle>Sanitized supporting artifact</SectionTitle>
-          <Artifact>
-            <figcaption><strong>{study.artifact.title}</strong><span>{study.artifact.note}</span></figcaption>
-            <Flow>{study.artifact.steps.map((step) => <li key={step}>{step}</li>)}</Flow>
-          </Artifact>
-        </Section>
+        {study.artifact && study.artifact.status !== "planned" && (
+          <Section>
+            <SectionTitle>Sanitized supporting artifact</SectionTitle>
+            <Artifact>
+              <figcaption>
+                <strong>{study.artifact.title}</strong>
+                <span>{study.artifact.note}</span>
+              </figcaption>
+              <Flow>
+                {study.artifact.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </Flow>
+            </Artifact>
+          </Section>
+        )}
         <ButtonLink to="/proof-of-work">Back to Proof of Work</ButtonLink>
       </Main>
     </Layout>

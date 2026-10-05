@@ -32,6 +32,13 @@ export const GlobalStyles = createGlobalStyle`
     transition: background-color ${({ theme }) => theme.transitionBase};
   }
 
+  section[id] { scroll-margin-top: 90px; }
+
+  details { margin-top: 1rem; }
+  summary { cursor: pointer; color: ${({ theme }) => theme.secondary}; font-weight: 700; }
+  summary:focus-visible { outline: 2px solid ${({ theme }) => theme.secondary}; outline-offset: 3px; }
+  details[open] summary { margin-bottom: 1rem; }
+
   /* Typography */
   h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
