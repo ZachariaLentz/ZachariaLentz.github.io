@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import styled from "styled-components";
 
@@ -93,27 +93,35 @@ const links = [
   ["/", "Home"],
   ["/proof-of-work", "Proof of Work"],
   ["/experience", "Experience"],
-  ["/credentials", "Credentials"],
   ["/contact", "Contact"],
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const menuRef = useRef(null);
   const location = useLocation();
 
   useEffect(() => setOpen(false), [location.pathname]);
 
   useEffect(() => {
-    const closeOnEscape = (event) => event.key === "Escape" && setOpen(false);
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape" && open) {
+        setOpen(false);
+        menuRef.current?.focus();
+      }
+    };
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, []);
+  }, [open]);
 
   return (
     <Shell>
       <Bar>
-        <Brand to="/" aria-label="Zacharia Lentz home">Zacharia Lentz</Brand>
+        <Brand to="/" aria-label="Zacharia Lentz home">
+          Zacharia Lentz
+        </Brand>
         <MenuButton
+          ref={menuRef}
           type="button"
           aria-controls="primary-navigation"
           aria-expanded={open}
@@ -122,9 +130,15 @@ export default function Header() {
         >
           <span aria-hidden="true">{open ? "×" : "☰"}</span>
         </MenuButton>
-        <Navigation id="primary-navigation" aria-label="Primary navigation" $open={open}>
+        <Navigation
+          id="primary-navigation"
+          aria-label="Primary navigation"
+          $open={open}
+        >
           {links.map(([to, label]) => (
-            <Item key={to} to={to} end={to === "/"}>{label}</Item>
+            <Item key={to} to={to} end={to === "/"}>
+              {label}
+            </Item>
           ))}
         </Navigation>
       </Bar>

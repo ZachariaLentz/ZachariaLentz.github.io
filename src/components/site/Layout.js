@@ -25,7 +25,7 @@ const SkipLink = styled.a`
   }
 `;
 
-export const Main = styled.main`
+export const Main = styled.main.attrs({ tabIndex: -1 })`
   flex: 1;
   width: min(1120px, calc(100% - 2rem));
   margin: 0 auto;

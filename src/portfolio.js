@@ -1,10 +1,9 @@
 const site = {
   url: "https://zacharia.dev",
   name: "Zacharia Lentz",
-  title:
-    "Maintenance & Reliability Leader | CMMS Administration | Industrial Implementation",
+  title: "Industrial Maintenance & Reliability Leader",
   description:
-    "Tesla Production Engineering Supervisor leading maintenance technicians across automated Powerwall production lines, with experience in reliability execution, CMMS administration, and industrial implementation.",
+    "Industrial maintenance leader bridging people, equipment, and systems. Relocating to the Midland, Michigan area; open to Michigan-based and remote roles.",
   email: "zach0lentz@gmail.com",
   phone: "(989) 941-5916",
   linkedin: "https://www.linkedin.com/in/zacharia-lentz/",
@@ -13,10 +12,10 @@ const site = {
 
 const hero = {
   eyebrow:
-    "Industrial maintenance leadership, strengthened by systems expertise",
+    "Automated Manufacturing · Maintenance Systems · Technical Leadership",
   headline: site.title,
   summary:
-    "Tesla Production Engineering Supervisor leading 20+ maintenance technicians across three automated Powerwall production lines. I bridge frontline maintenance, CMMS configuration, equipment commissioning, and technical delivery. Based in Sparks, Nevada; relocating home to the Midland, Michigan area.",
+    "Tesla Production Engineering Supervisor leading 20+ maintenance technicians across three automated Powerwall production lines. I connect frontline leadership, equipment troubleshooting, and maintenance systems.",
 };
 
 const credibility = [
@@ -33,6 +32,7 @@ const credibility = [
 
 const experience = [
   {
+    id: "tesla-supervision",
     title: "Production Engineering Supervisor - Energy Maintenance",
     company: "Tesla",
     duration: "April 2024–Present",
@@ -40,16 +40,16 @@ const experience = [
     summary:
       "Lead 20+ maintenance technicians on one of four rotating shifts supporting three automated Powerwall production lines.",
     highlights: [
-      "Set daily priorities for preventive and corrective maintenance, equipment recovery, passdowns, and reliability work.",
-      "Coordinate root-cause investigations and execution with Production, Engineering, and Controls partners.",
+      "Set maintenance and recovery priorities; coordinate root-cause investigations with Production, Engineering, and Controls partners.",
       "Hired, onboarded, and trained 15+ technicians; developed technicians into shift-leader roles.",
       "Administer CMMS settings, custom views and filters, user roles and permissions, configuration validation, and preventive-maintenance creation and scheduling.",
       "Inspected and qualified an automation line in Italy, authored 58 Jira requests, and supported later U.S. startup and commissioning.",
       "Built Python dashboards from internal databases for near-real-time KPI, downtime-trend, and shift-performance visibility.",
-      "Helped move A-shift from lowest- to highest-performing in build-plan achievement; no unsupported percentage or cost claim is made.",
+      "Helped move A-shift from lowest- to highest-performing in build-plan achievement.",
     ],
   },
   {
+    id: "tesla-equipment",
     title: "Energy Equipment Maintenance Technician",
     company: "Tesla",
     duration: "March 2023–April 2024",
@@ -63,6 +63,7 @@ const experience = [
     ],
   },
   {
+    id: "field-service",
     title: "Field Service Electrician",
     company: "Blue Raven Solar",
     duration: "March 2022–March 2023",
@@ -75,6 +76,7 @@ const experience = [
     ],
   },
   {
+    id: "tesla-fixtures",
     title: "Equipment Maintenance Technician, Fixtures",
     company: "Tesla",
     duration: "March 2020–November 2021",
@@ -82,12 +84,12 @@ const experience = [
     summary:
       "Maintained and troubleshot production fixtures and associated mechanical and pneumatic systems.",
     highlights: [
-      "Executed preventive and corrective maintenance on production tooling and fixtures.",
       "Used a FARO Arm for dimensional verification, alignment, and geometry checks supporting mechanical correction.",
       "Created a centralized maintenance-documentation dashboard for technician access to specifications and procedures.",
     ],
   },
   {
+    id: "marine-maintenance",
     title: "MOS 6113 CH-53E Helicopter Mechanic / Maintenance Leadership",
     company: "United States Marine Corps",
     duration: "December 2013–December 2018",
@@ -126,6 +128,11 @@ const caseStudies = [
     problem:
       "Retrieving maintenance dispatch information and preparing it for analysis created recurring administrative friction. I started by making relevant events easier to retrieve and export.",
     role: "I conceived and designed the application and built it using substantial AI assistance. I owned the operational problem, requirements, workflow and UI decisions, implementation review, testing, and product evolution. AI coding assistants helped generate implementation code; I reviewed, tested, and refined the results using my software-development training.",
+    built: {
+      title: "What I built",
+      summary:
+        "A primarily Python desktop application that connects scoped maintenance records with analysis, editable handoffs, planning, parts research, and technician development. The workflows center on what a supervisor needs to review and do next.",
+    },
     ownership: {
       title: "My role",
       responsibilities: [
@@ -305,7 +312,9 @@ const caseStudies = [
       note: "This describes the development approach, not a claim of comprehensive automated test coverage or independent certification.",
     },
     outcome:
-      "The application grew into a broader set of workflows shaped by maintenance experience and user requests. The work connects industrial domain expertise, product direction, data analysis, and reviewed AI-assisted implementation. Impact remains qualitative; no ROI, adoption, downtime-reduction, labor-savings, or cost-savings figures are published.",
+      "The application grew into a broader set of workflows shaped by maintenance experience and user requests. It demonstrates the ability to turn frontline problems into requirements, connect analysis with operational decisions, and guide reviewed AI-assisted implementation.",
+    evidenceBoundary:
+      "Impact remains qualitative; no ROI, adoption, downtime-reduction, labor-savings, or cost-savings figures are published.",
     evidence: {
       title: "Portfolio-created examples",
       items: [
@@ -339,7 +348,7 @@ const caseStudies = [
     deck: "Coordinating people, priorities, and equipment work in a rotating-shift production environment.",
     category: "Maintenance leadership",
     context:
-      "Three automated Powerwall production lines operate across four rotating shifts. Zacharia leads 20+ maintenance technicians on one of those shifts.",
+      "Three automated Powerwall production lines operate across four rotating shifts. I lead 20+ maintenance technicians on one of those shifts.",
     problem:
       "The team must balance urgent equipment recovery with preventive work, reliable passdowns, technician development, and longer-term reliability priorities.",
     role: "Production Engineering Supervisor responsible for shift execution, technician leadership, work prioritization, and cross-functional coordination.",
@@ -347,10 +356,10 @@ const caseStudies = [
       "Set daily priorities across preventive work, corrective work, equipment recovery, and reliability follow-up.",
       "Use passdowns and CMMS records to preserve context between rotating shifts.",
       "Coordinate structured root-cause investigation with Production, Engineering, and Controls partners.",
-      "Hire, onboard, and train technicians; more than 15 technicians have been brought into the organization under Zacharia’s current supervision.",
+      "Hire, onboard, and train technicians; more than 15 technicians have been brought into the organization under my current supervision.",
     ],
     outcome:
-      "Verified result: Zacharia helped move A-shift from lowest- to highest-performing in build-plan achievement while maintaining coverage through headcount reductions. Employer production figures, percentages, downtime data, and cost claims are intentionally not published.",
+      "Verified result: I helped move A-shift from lowest- to highest-performing in build-plan achievement while maintaining coverage through headcount reductions. Employer production figures, percentages, downtime data, and cost claims are intentionally not published.",
     skills: [
       "Shift leadership",
       "Reliability execution",
@@ -382,14 +391,14 @@ const caseStudies = [
       "Poor configuration creates friction: technicians cannot find the right work, permissions become inconsistent, and preventive tasks lose operational context.",
     role: "Direct CMMS administrator and frontline maintenance leader who understands both configuration decisions and daily technician use.",
     actions: [
-      "Configure settings and validate both his own and other users’ configurations before broad use.",
+      "Configure settings and validate both my own and other users’ configurations before broad use.",
       "Build custom views and filters around roles, priorities, ownership, and shift needs.",
       "Manage user roles and permissions with least-access and usability tradeoffs in mind.",
       "Create and schedule preventive-maintenance work with clear scope and ownership.",
       "Document workflows and reinforce adoption through technician training.",
     ],
     outcome:
-      "Verified boundary: Zacharia directly performs these administrative activities in support of maintenance operations. The system name, employer configuration, records, adoption metrics, and internal data are confidential and are not reproduced here.",
+      "Verified boundary: I directly perform these administrative activities in support of maintenance operations. The system name, employer configuration, records, adoption metrics, and internal data are confidential and are not reproduced here.",
     skills: [
       "CMMS configuration",
       "Workflow design",
@@ -428,7 +437,7 @@ const caseStudies = [
       "Carry equipment history into U.S. startup and commissioning support.",
     ],
     outcome:
-      "Verified result: 58 documented findings entered the issue-management workflow before shipment, and Zacharia carried that equipment context into U.S. startup support. Project-level schedule, cost, production, and acceptance outcomes are not claimed.",
+      "Verified result: 58 documented findings entered the issue-management workflow before shipment, and I carried that equipment context into U.S. startup support. Project-level schedule, cost, production, and acceptance outcomes are not claimed.",
     skills: [
       "Equipment inspection",
       "Qualification support",
@@ -451,11 +460,18 @@ const caseStudies = [
   },
 ];
 
+const proofStudyIds = [
+  "industrial-operations-intelligence",
+  "maintenance-leadership",
+  "equipment-qualification",
+  "cmms-administration",
+];
+
 const demonstrationProject = {
   title: "CMMS Implementation Blueprint",
   label: "Self-directed demonstration using fictional/synthetic data",
   summary:
-    "A transparent example of how Zacharia would structure an implementation. This is not a client engagement and contains no employer data or proprietary system configuration.",
+    "An example of how I would structure a CMMS implementation. This is not a client engagement and contains no employer data or proprietary system configuration.",
   phases: [
     {
       title: "1. Discover",
@@ -538,9 +554,10 @@ const credentials = [
 
 const contact = {
   summary:
-    "Open to maintenance leadership, reliability, maintenance planning, facilities or operations leadership, and adjacent industrial implementation roles.",
+    "Open to Michigan-based and remote opportunities in maintenance leadership, maintenance systems, industrial technology, and technical delivery.",
+  availability: "Open to Michigan-based and remote opportunities.",
   location: "Sparks, Nevada",
-  relocation: "Relocating home to the Midland, Michigan area.",
+  relocation: "Relocating to the Midland, Michigan area.",
 };
 
 export {
@@ -550,6 +567,7 @@ export {
   experience,
   caseStudies,
   demonstrationProject,
+  proofStudyIds,
   credentials,
   contact,
 };

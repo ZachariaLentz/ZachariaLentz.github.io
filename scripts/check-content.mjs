@@ -2,6 +2,8 @@ import { readFile } from "node:fs/promises";
 
 const files = [
   "src/portfolio.js",
+  "src/roleFamilies.js",
+  "src/pages/role-families/RoleFamilyPage.js",
   "src/portfolioArtifacts.js",
   "src/components/site/PortfolioArtifact.js",
   "src/pages/home/HomeComponent.js",
@@ -27,6 +29,8 @@ const required = [
   "58 Jira requests",
   "15+ technicians",
   "≈5.5 years combined maintenance supervision",
+  "Open to Michigan-based and remote opportunities.",
+  "Relocating to the Midland, Michigan area.",
   "Self-directed demonstration using fictional/synthetic data",
 ];
 const prohibited = [
@@ -114,4 +118,44 @@ for (const id of flagship.evidence.items) {
 }
 console.log(
   "Flagship naming, AI attribution, confidentiality, coaching language, and three labeled synthetic artifacts verified.",
+);
+
+const roleSource = await readFile("src/roleFamilies.js", "utf8");
+const { roleFamilies } = await import(
+  `data:text/javascript;base64,${Buffer.from(roleSource).toString("base64")}`
+);
+const { credibility, experience } = await import(
+  `data:text/javascript;base64,${Buffer.from(portfolioSource).toString("base64")}`
+);
+const allowedSlugs = [
+  "maintenance-reliability",
+  "maintenance-systems",
+  "industrial-technology",
+];
+if (
+  roleFamilies.length !== 3 ||
+  new Set(roleFamilies.map((family) => family.slug)).size !== 3
+)
+  throw new Error("Expected three distinct role families");
+for (const family of roleFamilies) {
+  if (!allowedSlugs.includes(family.slug))
+    throw new Error("Unexpected employer-specific route");
+  for (const id of [...family.caseStudyIds, ...family.supportingStudyIds])
+    if (!caseStudies.some((study) => study.id === id))
+      throw new Error(`Unknown canonical case-study reference: ${id}`);
+  for (const id of family.experienceIds)
+    if (!experience.some((role) => role.id === id))
+      throw new Error(`Unknown canonical experience reference: ${id}`);
+  for (const label of family.credibilityLabels)
+    if (!credibility.some((item) => item.label === label))
+      throw new Error(`Unknown canonical scope reference: ${label}`);
+  if (
+    /Istari|production screenshots|source code available|I own|employer.authorized/i.test(
+      JSON.stringify(family),
+    )
+  )
+    throw new Error("Unsafe role-family content");
+}
+console.log(
+  "Three employer-neutral role families reference existing canonical evidence and career facts.",
 );

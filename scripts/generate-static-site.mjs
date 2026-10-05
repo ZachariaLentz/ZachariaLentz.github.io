@@ -9,8 +9,15 @@ const portfolioSource = await readFile(
   path.join(root, "src", "portfolio.js"),
   "utf8",
 );
-const { caseStudies, site } = await import(
+const { caseStudies, site, demonstrationProject } = await import(
   `data:text/javascript;base64,${Buffer.from(portfolioSource).toString("base64")}`
+);
+const roleSource = await readFile(
+  path.join(root, "src", "roleFamilies.js"),
+  "utf8",
+);
+const { roleFamilies } = await import(
+  `data:text/javascript;base64,${Buffer.from(roleSource).toString("base64")}`
 );
 const siteUrl = site.url;
 
@@ -18,12 +25,12 @@ const pages = [
   [
     "experience",
     "Experience | Zacharia Lentz",
-    "Accurate maintenance, field service, automated manufacturing, and military aviation experience for Zacharia Lentz.",
+    "Maintenance leadership, field service, automated manufacturing, and military aviation experience for Zacharia Lentz.",
   ],
   [
     "contact",
     "Contact | Zacharia Lentz",
-    "Contact Zacharia Lentz about maintenance leadership, reliability, industrial operations, or technical implementation opportunities.",
+    "Contact Zacharia Lentz about Michigan-based and remote roles in maintenance leadership, maintenance systems, industrial technology, and technical delivery.",
   ],
   [
     "proof-of-work",
@@ -38,8 +45,13 @@ const pages = [
   [
     "demonstration-project",
     "CMMS Implementation Blueprint | Zacharia Lentz",
-    "A self-directed demonstration using fictional data that shows Zacharia Lentz's structured CMMS implementation approach.",
+    demonstrationProject.summary,
   ],
+  ...roleFamilies.map((family) => [
+    `for/${family.slug}`,
+    `${family.label} | ${site.name}`,
+    family.description,
+  ]),
   ...caseStudies.map((study) => [
     `case-studies/${study.id}`,
     `${study.seo?.title || study.title} | ${site.name}`,
@@ -59,6 +71,7 @@ function metadataFor(html, route, title, description) {
   const escapedTitle = escapeHtml(title);
   const escapedDescription = escapeHtml(description);
   const study = caseStudies.find((item) => route === `case-studies/${item.id}`);
+  const family = roleFamilies.find((item) => route === `for/${item.slug}`);
   const structuredData = {
     "@context": "https://schema.org",
     "@type": study ? "Article" : "WebPage",
@@ -70,44 +83,60 @@ function metadataFor(html, route, title, description) {
       : { name: title }),
     description,
     url,
+    ...(family
+      ? {
+          relatedLink: family.caseStudyIds.map(
+            (id) => `${siteUrl}/case-studies/${id}`,
+          ),
+        }
+      : {}),
   };
-  return html
+  const shell = family
+    ? html.replace(
+        "</head>",
+        '<meta name="robots" content="index,follow" data-rh="true"/></head>',
+      )
+    : html;
+  return shell
     .replace(
-      /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
-      `<script type="application/ld+json">${JSON.stringify(structuredData).replaceAll("<", "\\u003c")}</script>`,
+      /<script type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/,
+      `<script type="application/ld+json" data-rh="true">${JSON.stringify(structuredData).replaceAll("<", "\\u003c")}</script>`,
     )
     .replace(
-      /<meta property="og:type" content="[^"]*"\s*\/?>/,
-      `<meta property="og:type" content="${study ? "article" : "website"}"/>`,
-    )
-    .replace(/<title>.*?<\/title>/, `<title>${escapedTitle}</title>`)
-    .replace(
-      /<meta name="description" content="[^"]*"\s*\/?>/,
-      `<meta name="description" content="${escapedDescription}"/>`,
+      /<meta property="og:type" content="[^"]*"[^>]*>/,
+      `<meta property="og:type" content="${study ? "article" : "website"}" data-rh="true"/>`,
     )
     .replace(
-      /<link rel="canonical" href="[^"]*"\s*\/?>/,
-      `<link rel="canonical" href="${url}"/>`,
+      /<title[^>]*>.*?<\/title>/,
+      `<title data-rh="true">${escapedTitle}</title>`,
     )
     .replace(
-      /<meta property="og:title" content="[^"]*"\s*\/?>/,
-      `<meta property="og:title" content="${escapedTitle}"/>`,
+      /<meta name="description" content="[^"]*"[^>]*>/,
+      `<meta name="description" content="${escapedDescription}" data-rh="true"/>`,
     )
     .replace(
-      /<meta property="og:description" content="[^"]*"\s*\/?>/,
-      `<meta property="og:description" content="${escapedDescription}"/>`,
+      /<link rel="canonical" href="[^"]*"[^>]*>/,
+      `<link rel="canonical" href="${url}" data-rh="true"/>`,
     )
     .replace(
-      /<meta property="og:url" content="[^"]*"\s*\/?>/,
-      `<meta property="og:url" content="${url}"/>`,
+      /<meta property="og:title" content="[^"]*"[^>]*>/,
+      `<meta property="og:title" content="${escapedTitle}" data-rh="true"/>`,
     )
     .replace(
-      /<meta name="twitter:title" content="[^"]*"\s*\/?>/,
-      `<meta name="twitter:title" content="${escapedTitle}"/>`,
+      /<meta property="og:description" content="[^"]*"[^>]*>/,
+      `<meta property="og:description" content="${escapedDescription}" data-rh="true"/>`,
     )
     .replace(
-      /<meta name="twitter:description" content="[^"]*"\s*\/?>/,
-      `<meta name="twitter:description" content="${escapedDescription}"/>`,
+      /<meta property="og:url" content="[^"]*"[^>]*>/,
+      `<meta property="og:url" content="${url}" data-rh="true"/>`,
+    )
+    .replace(
+      /<meta name="twitter:title" content="[^"]*"[^>]*>/,
+      `<meta name="twitter:title" content="${escapedTitle}" data-rh="true"/>`,
+    )
+    .replace(
+      /<meta name="twitter:description" content="[^"]*"[^>]*>/,
+      `<meta name="twitter:description" content="${escapedDescription}" data-rh="true"/>`,
     );
 }
 

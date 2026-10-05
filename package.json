@@ -11,7 +11,7 @@
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "react-scripts test --watchAll=false",
-    "lint": "eslint src/App.js src/App.test.js src/setupTests.js src/index.js src/global.js src/theme.js src/portfolio.js src/portfolioArtifacts.js src/containers/Main.js src/components/header/Header.js src/components/footer/Footer.js src/components/site/*.js src/pages/home/HomeComponent.js src/pages/experience/Experience.js src/pages/contact/ContactComponent.js src/pages/case-studies/*.js src/pages/credentials/CredentialsPage.js src/pages/errors/error404/Error.js",
+    "lint": "eslint src/App.js src/App.test.js src/setupTests.js src/index.js src/global.js src/theme.js src/portfolio.js src/portfolioArtifacts.js src/roleFamilies.js src/containers/Main.js src/components/header/Header.js src/components/footer/Footer.js src/components/site/*.js src/pages/home/HomeComponent.js src/pages/experience/Experience.js src/pages/contact/ContactComponent.js src/pages/case-studies/*.js src/pages/role-families/*.js src/pages/credentials/CredentialsPage.js src/pages/errors/error404/Error.js",
     "check:content": "node scripts/check-content.mjs",
     "verify:build": "node scripts/verify-build.mjs",
     "format": "prettier --write src"

@@ -55,7 +55,7 @@ test("experience keeps Tesla periods separate and uses Sparks", () => {
 
 test("case study route renders required structure", () => {
   const { container, cleanup } = renderAt("/case-studies/cmms-administration");
-  expect(container.textContent).toContain("Zacharia’s role");
+  expect(container.textContent).toContain("My role");
   expect(container.textContent).toContain("Actions taken");
   expect(container.textContent).toContain(
     "Verified result or outcome boundary",
@@ -75,36 +75,53 @@ test("demonstration project clearly disclaims client work", () => {
   cleanup();
 });
 
-test.each(["/", "/proof-of-work"])(
-  "%s features the software study once before supporting studies",
-  (path) => {
-    const { container, cleanup } = renderAt(path);
-    const links = container.querySelectorAll(
-      'a[href="/case-studies/industrial-operations-intelligence"]',
-    );
-    expect(links).toHaveLength(1);
-    expect(links[0].querySelector("h2").textContent).toBe(
-      "Industrial Operations Intelligence Application",
-    );
-    expect(links[0].textContent).toContain(
-      "Industrial Operations Intelligence Application",
-    );
-    const homeSummary =
-      "An internal application that grew from a simple maintenance-data problem into tools for analysis, shift handoffs, planning, parts research, and technician development.";
-    if (path === "/") expect(links[0].textContent).toContain(homeSummary);
-    else {
-      expect(links[0].textContent).not.toContain(homeSummary);
-      expect(links[0].textContent).toContain(
-        "A Python desktop application that grew from maintenance-event retrieval",
-      );
-    }
-    const firstStudy = container.querySelector('a[href^="/case-studies/"]');
-    expect(firstStudy.getAttribute("href")).toBe(
-      "/case-studies/industrial-operations-intelligence",
-    );
-    cleanup();
-  },
-);
+test("Home orders three proof areas around leadership, equipment, and systems", () => {
+  const { container, cleanup } = renderAt("/");
+  const links = container.querySelectorAll(
+    'section[aria-labelledby="selected-proof"] a',
+  );
+  expect(Array.from(links, (link) => link.getAttribute("href"))).toEqual([
+    "/case-studies/maintenance-leadership",
+    "/case-studies/equipment-qualification",
+    "/case-studies/industrial-operations-intelligence",
+  ]);
+  expect(links[2].querySelector("h3").textContent).toBe(
+    "Industrial Operations Intelligence Application",
+  );
+  expect(links[2].textContent).toContain(
+    "An internal application that grew from a simple maintenance-data problem into tools for analysis, shift handoffs, planning, parts research, and technician development.",
+  );
+  expect(
+    container.querySelector('a[href="/demonstration-project"]'),
+  ).toBeNull();
+  expect(container.querySelector("main").textContent).toContain(
+    "Relocating to the Midland, Michigan area",
+  );
+  cleanup();
+});
+
+test("Proof of Work prioritizes professional evidence and demotes the demonstration", () => {
+  const { container, cleanup } = renderAt("/proof-of-work");
+  expect(
+    Array.from(
+      container.querySelectorAll('main a[href^="/case-studies/"]'),
+      (link) => link.getAttribute("href"),
+    ),
+  ).toEqual([
+    "/case-studies/industrial-operations-intelligence",
+    "/case-studies/maintenance-leadership",
+    "/case-studies/equipment-qualification",
+    "/case-studies/cmms-administration",
+  ]);
+  const demonstration = container
+    .querySelector('a[href="/demonstration-project"]')
+    .closest("details");
+  expect(demonstration.open).toBe(false);
+  expect(demonstration.textContent).toContain(
+    "Self-directed demonstration using fictional/synthetic data",
+  );
+  cleanup();
+});
 
 test("software case study preserves public naming, confidentiality, and AI attribution", () => {
   const { container, cleanup } = renderAt(
@@ -115,7 +132,7 @@ test("software case study preserves public naming, confidentiality, and AI attri
     "Industrial Operations Intelligence Application",
   );
   expect(main.textContent).toContain("Flagship software case study");
-  expect(main.querySelectorAll("#development p")[0].textContent).toContain(
+  expect(main.querySelectorAll("#role p")[0].textContent).toContain(
     "I conceived and designed the application",
   );
   expect(main.querySelector('[role="note"]').textContent).toContain(
@@ -188,5 +205,161 @@ test("synthetic artifacts render consistent fictional records", () => {
       .querySelector("#maintenance-analysis-concept")
       .querySelectorAll("article"),
   ).toHaveLength(6);
+  cleanup();
+});
+
+test("Credentials remain accessible without competing in primary navigation", () => {
+  const { container, cleanup } = renderAt("/experience");
+  expect(
+    Array.from(
+      container.querySelectorAll("#primary-navigation a"),
+      (link) => link.textContent,
+    ),
+  ).toEqual(["Home", "Proof of Work", "Experience", "Contact"]);
+  expect(container.querySelector('main a[href="/credentials"]')).not.toBeNull();
+  expect(
+    container.querySelector('footer a[href="/credentials"]'),
+  ).not.toBeNull();
+  expect(container.querySelector("article ul").children).toHaveLength(6);
+  cleanup();
+});
+
+test("Flagship keeps AI attribution visible and technical depth optional", () => {
+  const { container, cleanup } = renderAt(
+    "/case-studies/industrial-operations-intelligence",
+  );
+  expect(container.querySelector("#role p").closest("details")).toBeNull();
+  expect(container.querySelector("#technical-depth details").open).toBe(false);
+  expect(container.querySelector("#technical-depth").textContent).toContain(
+    "Review generated code and application structure",
+  );
+  expect(container.querySelector("main").textContent).not.toContain(
+    "Skills demonstrated",
+  );
+  expect(
+    container.querySelectorAll('[aria-label="Confidentiality"]'),
+  ).toHaveLength(1);
+  cleanup();
+});
+
+test.each([
+  ["maintenance-reliability", "maintenance-leadership"],
+  ["maintenance-systems", "cmms-administration"],
+  ["industrial-technology", "industrial-operations-intelligence"],
+])("%s curates canonical evidence for its audience", async (slug, firstId) => {
+  const { container, cleanup } = renderAt(`/for/${slug}`);
+  const main = container.querySelector("main");
+  expect(
+    main.querySelector('a[href^="/case-studies/"]').getAttribute("href"),
+  ).toBe(`/case-studies/${firstId}`);
+  expect(main.textContent).toContain(
+    "Relocating to the Midland, Michigan area",
+  );
+  expect(main.querySelectorAll('a[href="/contact"]')).toHaveLength(2);
+  expect(main.querySelector('a[href="/experience"]')).not.toBeNull();
+  expect(main.querySelector("figure")).toBeNull();
+  await act(async () => {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  });
+  expect(document.querySelector('link[rel="canonical"]').href).toBe(
+    `https://zacharia.dev/for/${slug}`,
+  );
+  expect(document.querySelector('meta[name="robots"]').content).toBe(
+    "index,follow",
+  );
+  expect(main.textContent).not.toMatch(
+    /Istari|Software Engineer|AI Engineer|source code available/,
+  );
+  cleanup();
+});
+
+test("Unconfigured role-family routes reach the not-found page", () => {
+  const { container, cleanup } = renderAt("/for/unknown");
+  expect(container.querySelector("h1").textContent).toBe(
+    "That page is not available.",
+  );
+  cleanup();
+});
+
+test("Static metadata hands off to a single current canonical after navigation", async () => {
+  document.head.insertAdjacentHTML(
+    "beforeend",
+    '<link rel="canonical" href="https://zacharia.dev/" data-rh="true"><meta name="description" content="Initial static description" data-rh="true">',
+  );
+  const { container, cleanup } = renderAt("/");
+  await act(async () => {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  });
+  act(() =>
+    container
+      .querySelector('a[href="/for/maintenance-systems"]')
+      .dispatchEvent(new MouseEvent("click", { bubbles: true, button: 0 })),
+  );
+  await act(async () => {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  });
+  expect(document.querySelectorAll('link[rel="canonical"]')).toHaveLength(1);
+  expect(document.querySelector('link[rel="canonical"]').href).toBe(
+    "https://zacharia.dev/for/maintenance-systems",
+  );
+  expect(document.querySelectorAll('meta[name="description"]')).toHaveLength(1);
+  expect(
+    document.querySelectorAll('script[type="application/ld+json"]'),
+  ).toHaveLength(1);
+  act(() =>
+    container
+      .querySelector('a[href="/contact"]')
+      .dispatchEvent(new MouseEvent("click", { bubbles: true, button: 0 })),
+  );
+  await act(async () => {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  });
+  expect(document.querySelector('link[rel="canonical"]').href).toBe(
+    "https://zacharia.dev/contact",
+  );
+  expect(document.querySelector('meta[name="robots"]')).toBeNull();
+  expect(
+    JSON.parse(
+      document.querySelector('script[type="application/ld+json"]').textContent,
+    )["@type"],
+  ).toBe("WebPage");
+  cleanup();
+});
+
+test("Escape closes mobile navigation and returns focus to its control", () => {
+  const { container, cleanup } = renderAt("/");
+  const menu = container.querySelector(
+    'button[aria-controls="primary-navigation"]',
+  );
+  act(() => menu.dispatchEvent(new MouseEvent("click", { bubbles: true })));
+  container.querySelector("#primary-navigation a").focus();
+  act(() =>
+    window.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" })),
+  );
+  expect(menu.getAttribute("aria-expanded")).toBe("false");
+  expect(document.activeElement).toBe(menu);
+  expect(container.querySelector("main").tabIndex).toBe(-1);
+  cleanup();
+});
+
+test.each([
+  "/",
+  "/experience",
+  "/contact",
+  "/for/maintenance-reliability",
+  "/for/maintenance-systems",
+  "/for/industrial-technology",
+])("%s makes Michigan relocation and remote availability clear", (path) => {
+  const { container, cleanup } = renderAt(path);
+  const main = container.querySelector("main");
+  expect(main.textContent).toContain(
+    "Relocating to the Midland, Michigan area.",
+  );
+  expect(main.textContent).toMatch(
+    /Michigan-based and remote (opportunities|roles)/,
+  );
+  expect(container.querySelector("footer").textContent).toContain(
+    "Open to Michigan-based and remote opportunities.",
+  );
   cleanup();
 });

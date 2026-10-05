@@ -65,6 +65,7 @@ const Steps = styled.ol`
   }
   p {
     margin: 0.35rem 0 0;
+    color: ${({ theme }) => theme.primaryLight};
     font-size: 0.9rem;
   }
   @media (max-width: 720px) {
@@ -99,6 +100,9 @@ const Panel = styled.div`
   padding: 1.1rem;
   border-radius: ${({ theme }) => theme.radiusMd};
   background: ${({ theme }) => theme.surfaceAlt};
+  p {
+    color: ${({ theme }) => theme.primaryLight};
+  }
   p:last-child {
     margin-bottom: 0;
   }
@@ -267,27 +271,32 @@ function Analysis({ artifact }) {
           </p>
         </Panel>
       </TwoColumns>
-      <h4 style={{ marginTop: "1.5rem" }}>
-        Fictional event list · response, participation & notes
-      </h4>
-      <TwoColumns>
-        {artifact.events.map((event) => (
-          <Event key={event.id}>
-            <h4>
-              {event.asset} · {event.time}
-            </h4>
-            <Tag>{event.category}</Tag>
-            <p>
-              {event.id} · {event.technician}
-            </p>
-            <p>
-              Invented interruption: {event.interruption} min · response:{" "}
-              {event.response} min
-            </p>
-            <p>{event.note}</p>
-          </Event>
-        ))}
-      </TwoColumns>
+      <details>
+        <summary>
+          Review six fictional events: response, participation & notes
+        </summary>
+        <h4 style={{ marginTop: "1.5rem" }}>
+          Fictional event list · response, participation & notes
+        </h4>
+        <TwoColumns>
+          {artifact.events.map((event) => (
+            <Event key={event.id}>
+              <h4>
+                {event.asset} · {event.time}
+              </h4>
+              <Tag>{event.category}</Tag>
+              <p>
+                {event.id} · {event.technician}
+              </p>
+              <p>
+                Invented interruption: {event.interruption} min · response:{" "}
+                {event.response} min
+              </p>
+              <p>{event.note}</p>
+            </Event>
+          ))}
+        </TwoColumns>
+      </details>
     </>
   );
 }

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import PortfolioArtifact from "../../components/site/PortfolioArtifact";
 import {
-  Card,
   Grid,
   List,
   Section,
@@ -10,68 +9,84 @@ import {
   SectionTitle,
 } from "../../components/site/UI";
 
-const CapabilityGrid = styled(Grid)`
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  @media (max-width: 720px) {
-    grid-template-columns: 1fr;
+const Reading = styled.div`
+  max-width: 780px;
+`;
+const TechnicalDetails = styled.details`
+  padding: 1.25rem;
+  border: 1px solid ${({ theme }) => theme.border};
+  border-radius: ${({ theme }) => theme.radiusMd};
+  background: ${({ theme }) => theme.surface};
+  h3 {
+    margin-top: 1.5rem;
   }
 `;
 
-function Details({ items }) {
-  return (
-    <Grid>
-      {items.map((item) => (
-        <Card key={item.title}>
-          <h3>{item.title}</h3>
-          <p>{item.detail}</p>
-        </Card>
-      ))}
-    </Grid>
-  );
-}
-
 export default function SoftwareSections({ study }) {
-  const {
-    developmentApproach,
-    evolution,
-    capabilities,
-    architecture,
-    design,
-    validation,
-    handoff,
-  } = study;
+  const { evolution, capabilities, architecture, design, validation, handoff } =
+    study;
   const evidence = study.evidence?.items || [];
   const artifact = (id) =>
     evidence.includes(id) ? <PortfolioArtifact id={id} /> : null;
   return (
     <>
-      {developmentApproach && (
-        <Section id="development">
-          <SectionTitle>{developmentApproach.title}</SectionTitle>
-          {developmentApproach.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </Section>
-      )}
-      {evolution && (
-        <Section id="evolution">
-          <SectionTitle>{evolution.title}</SectionTitle>
-          <SectionIntro>{evolution.intro}</SectionIntro>
-          <Card>
-            <h3>{evolution.initialFocus.title}</h3>
-            <p>{evolution.initialFocus.detail}</p>
-          </Card>
-          <SectionIntro>{evolution.note}</SectionIntro>
-          <Details items={evolution.expansionThemes} />
-        </Section>
-      )}
-      {architecture && (
-        <Section id="architecture">
-          <SectionTitle>{architecture.title}</SectionTitle>
-          <SectionIntro>{architecture.intro}</SectionIntro>
-          {artifact("operations-workflow-concept")}
-          <details>
-            <summary>High-level technical approach</summary>
+      <Section id="context">
+        <SectionTitle>The operational problem</SectionTitle>
+        <Reading>
+          <p>{study.context}</p>
+          <p>{study.problem}</p>
+        </Reading>
+      </Section>
+      <Section id="built">
+        <SectionTitle>{study.built.title}</SectionTitle>
+        <SectionIntro>{study.built.summary}</SectionIntro>
+        <h3>{evolution.title}</h3>
+        <Reading>
+          <p>
+            {evolution.intro} What began as retrieval and export expanded into
+            tools for reviewing recurring work, preparing the next shift, and
+            connecting supporting information.
+          </p>
+        </Reading>
+        {artifact("operations-workflow-concept")}
+      </Section>
+      <Section id="workflows">
+        <SectionTitle>
+          Example: find the events that need attention
+        </SectionTitle>
+        <SectionIntro>
+          Time, asset, and category filters narrow the question. Recurring-event
+          views, participation information, and consolidated notes help a
+          supervisor review the work before deciding what to follow up.
+        </SectionIntro>
+        {artifact("maintenance-analysis-concept")}
+      </Section>
+      <Section id="handoff">
+        <SectionTitle>{handoff.title}</SectionTitle>
+        <SectionIntro>{handoff.intro}</SectionIntro>
+        {artifact("shift-handoff-concept")}
+      </Section>
+      <Section id="role">
+        <SectionTitle>My role and AI-assisted development</SectionTitle>
+        <Reading>
+          <p>{study.role}</p>
+        </Reading>
+      </Section>
+      <Section id="outcome">
+        <SectionTitle>What the work demonstrates</SectionTitle>
+        <Reading>
+          <p>{study.outcome}</p>
+        </Reading>
+      </Section>
+      <Section id="technical-depth">
+        <SectionTitle>Optional technical and workflow depth</SectionTitle>
+        <TechnicalDetails>
+          <summary>
+            Explore capabilities, design decisions, and review practices
+          </summary>
+          <Reading>
+            <h3 id="architecture">{architecture.title}</h3>
+            <p>{architecture.intro}</p>
             <List>
               {architecture.layers.map((layer) => (
                 <li key={layer.title}>
@@ -79,59 +94,44 @@ export default function SoftwareSections({ study }) {
                 </li>
               ))}
             </List>
-          </details>
-          <p>{architecture.note}</p>
-        </Section>
-      )}
-      {capabilities && (
-        <Section id="workflows">
-          <SectionTitle>{capabilities.title}</SectionTitle>
-          <SectionIntro>{capabilities.intro}</SectionIntro>
-          <CapabilityGrid>
+            <h3>{capabilities.title}</h3>
+          </Reading>
+          <Grid>
             {capabilities.groups.map((group) => (
-              <Card key={group.id}>
-                <h3>{group.title}</h3>
+              <div key={group.id}>
+                <h4>{group.title}</h4>
                 <p>{group.summary}</p>
-                <details>
-                  <summary>Explore {group.title.toLowerCase()}</summary>
-                  <List>
-                    {group.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </List>
-                </details>
-              </Card>
+                <List>
+                  {group.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </List>
+              </div>
             ))}
-          </CapabilityGrid>
-          {artifact("maintenance-analysis-concept")}
-        </Section>
-      )}
-      {handoff && (
-        <Section id="handoff">
-          <SectionTitle>{handoff.title}</SectionTitle>
-          <SectionIntro>{handoff.intro}</SectionIntro>
-          {artifact("shift-handoff-concept")}
-        </Section>
-      )}
-      {design && (
-        <Section id="design">
-          <SectionTitle>{design.title}</SectionTitle>
-          <SectionIntro>{design.intro}</SectionIntro>
-          <Details items={design.principles} />
-        </Section>
-      )}
-      {validation && (
-        <Section id="validation">
-          <SectionTitle>{validation.title}</SectionTitle>
-          <SectionIntro>{validation.intro}</SectionIntro>
-          <List>
-            {validation.practices.map((practice) => (
-              <li key={practice}>{practice}</li>
-            ))}
-          </List>
-          <p>{validation.note}</p>
-        </Section>
-      )}
+          </Grid>
+          <Reading>
+            <h3>{design.title}</h3>
+            <List>
+              {design.principles.map((item) => (
+                <li key={item.title}>
+                  <strong>{item.title}:</strong> {item.detail}
+                </li>
+              ))}
+            </List>
+            <h3 id="validation">{validation.title}</h3>
+            <p>{validation.intro}</p>
+            <List>
+              {validation.practices.map((practice) => (
+                <li key={practice}>{practice}</li>
+              ))}
+            </List>
+            <p>{study.developmentApproach.paragraphs[1]}</p>
+            <h3>Evidence and methodology note</h3>
+            <p>{validation.note}</p>
+            <p>{study.evidenceBoundary}</p>
+          </Reading>
+        </TechnicalDetails>
+      </Section>
     </>
   );
 }

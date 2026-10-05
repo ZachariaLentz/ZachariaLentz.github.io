@@ -146,85 +146,81 @@ export default function CaseStudyPage() {
         {study.format === "software" && (
           <Contents aria-label="On this page">
             <a href="#context">Problem</a>
+            <a href="#built">Application & evolution</a>
+            <a href="#workflows">Analysis example</a>
+            <a href="#handoff">Handoff example</a>
             <a href="#role">My role</a>
-            <a href="#development">Development</a>
-            <a href="#evolution">Evolution</a>
-            <a href="#architecture">Architecture</a>
-            <a href="#workflows">Workflows</a>
-            <a href="#handoff">Shift handoff</a>
-            <a href="#design">Design</a>
-            <a href="#validation">Review and testing</a>
-            <a href="#outcome">Outcome</a>
+            <a href="#outcome">Result</a>
+            <a href="#technical-depth">Optional depth</a>
           </Contents>
         )}
-        <Section id="context">
-          <DetailGrid>
-            <div>
-              <SectionTitle>Context</SectionTitle>
-              <p>{study.context}</p>
-            </div>
-            <div>
-              <SectionTitle>Problem</SectionTitle>
-              <p>{study.problem}</p>
-            </div>
-          </DetailGrid>
-        </Section>
-        <Section id="role">
-          <SectionTitle>
-            {study.ownership?.title || "Zacharia’s role"}
-          </SectionTitle>
-          {study.ownership ? (
-            <List>
-              {study.ownership.responsibilities.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </List>
-          ) : (
-            <p>{study.role}</p>
-          )}
-        </Section>
-        <SoftwareSections study={study} />
-        {study.actions && (
-          <Section>
-            <SectionTitle>Actions taken</SectionTitle>
-            <List>
-              {study.actions.map((action) => (
-                <li key={action}>{action}</li>
-              ))}
-            </List>
-          </Section>
-        )}
-        <Section id="outcome">
-          <SectionTitle>
-            {study.format === "software"
-              ? "Outcome and evidence boundary"
-              : "Verified result or outcome boundary"}
-          </SectionTitle>
-          <p>{study.outcome}</p>
-        </Section>
-        <Section>
-          <SectionTitle>Skills demonstrated</SectionTitle>
-          <Skills>
-            {study.skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </Skills>
-        </Section>
-        {study.artifact && study.artifact.status !== "planned" && (
-          <Section>
-            <SectionTitle>Sanitized supporting artifact</SectionTitle>
-            <Artifact>
-              <figcaption>
-                <strong>{study.artifact.title}</strong>
-                <span>{study.artifact.note}</span>
-              </figcaption>
-              <Flow>
-                {study.artifact.steps.map((step) => (
-                  <li key={step}>{step}</li>
+        {study.format === "software" ? (
+          <SoftwareSections study={study} />
+        ) : (
+          <>
+            <Section id="context">
+              <DetailGrid>
+                <div>
+                  <SectionTitle>Context</SectionTitle>
+                  <p>{study.context}</p>
+                </div>
+                <div>
+                  <SectionTitle>Problem</SectionTitle>
+                  <p>{study.problem}</p>
+                </div>
+              </DetailGrid>
+            </Section>
+            <Section id="role">
+              <SectionTitle>{study.ownership?.title || "My role"}</SectionTitle>
+              {study.ownership ? (
+                <List>
+                  {study.ownership.responsibilities.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </List>
+              ) : (
+                <p>{study.role}</p>
+              )}
+            </Section>
+            {study.actions && (
+              <Section>
+                <SectionTitle>Actions taken</SectionTitle>
+                <List>
+                  {study.actions.map((action) => (
+                    <li key={action}>{action}</li>
+                  ))}
+                </List>
+              </Section>
+            )}
+            <Section id="outcome">
+              <SectionTitle>Verified result or outcome boundary</SectionTitle>
+              <p>{study.outcome}</p>
+            </Section>
+            <Section>
+              <SectionTitle>Skills demonstrated</SectionTitle>
+              <Skills>
+                {study.skills.map((skill) => (
+                  <li key={skill}>{skill}</li>
                 ))}
-              </Flow>
-            </Artifact>
-          </Section>
+              </Skills>
+            </Section>
+            {study.artifact && study.artifact.status !== "planned" && (
+              <Section>
+                <SectionTitle>Sanitized supporting artifact</SectionTitle>
+                <Artifact>
+                  <figcaption>
+                    <strong>{study.artifact.title}</strong>
+                    <span>{study.artifact.note}</span>
+                  </figcaption>
+                  <Flow>
+                    {study.artifact.steps.map((step) => (
+                      <li key={step}>{step}</li>
+                    ))}
+                  </Flow>
+                </Artifact>
+              </Section>
+            )}
+          </>
         )}
         <ButtonLink to="/proof-of-work">Back to Proof of Work</ButtonLink>
       </Main>

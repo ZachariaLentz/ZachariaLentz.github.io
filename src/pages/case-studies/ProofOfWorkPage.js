@@ -9,12 +9,14 @@ import {
   Intro,
   PageTitle,
   Section,
-  SectionIntro,
-  SectionTitle,
   Tag,
   TextLink,
 } from "../../components/site/UI";
-import { caseStudies, demonstrationProject } from "../../portfolio";
+import {
+  caseStudies,
+  demonstrationProject,
+  proofStudyIds,
+} from "../../portfolio";
 
 export default function ProofOfWorkPage() {
   return (
@@ -25,16 +27,17 @@ export default function ProofOfWorkPage() {
         path="/proof-of-work"
       />
       <Main id="main-content">
-        <Eyebrow>Evidence, not confidential data</Eyebrow>
+        <Eyebrow>Selected professional evidence</Eyebrow>
         <PageTitle>Proof of Work</PageTitle>
         <Intro>
-          Each case study defines Zacharia’s role, actions, and outcome
-          boundary. Available supporting artifacts are original and sanitized.
+          Maintenance leadership, automated equipment, and systems work—shown
+          through specific responsibilities and public-safe evidence.
         </Intro>
         <FeaturedCaseStudy />
         <Section>
           <Grid>
-            {caseStudies
+            {proofStudyIds
+              .map((id) => caseStudies.find((study) => study.id === id))
               .filter((study) => !study.featured)
               .map((study) => (
                 <CardLink key={study.id} to={`/case-studies/${study.id}`}>
@@ -47,19 +50,15 @@ export default function ProofOfWorkPage() {
           </Grid>
         </Section>
         <Section>
-          <Eyebrow>Adjacent implementation lane</Eyebrow>
-          <SectionTitle>{demonstrationProject.title}</SectionTitle>
-          <SectionIntro>{demonstrationProject.summary}</SectionIntro>
-          <CardLink to="/demonstration-project">
-            <Tag>Demonstration project</Tag>
-            <h3>{demonstrationProject.label}</h3>
-            <p>
-              Discovery, data preparation, workflow configuration, permissions,
-              PM migration, pilot testing, training, go-live, and adoption
-              measures.
-            </p>
-            <TextLink>Review the blueprint →</TextLink>
-          </CardLink>
+          <details>
+            <summary>Additional self-directed CMMS demonstration</summary>
+            <p>{demonstrationProject.label}</p>
+            <p>{demonstrationProject.summary}</p>
+            <CardLink to="/demonstration-project">
+              <h2>{demonstrationProject.title}</h2>
+              <TextLink>Review the blueprint →</TextLink>
+            </CardLink>
+          </details>
         </Section>
       </Main>
     </Layout>

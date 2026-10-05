@@ -58,7 +58,11 @@ export default function Footer() {
       <Inner>
         <div>
           <Title>{site.name}</Title>
-          <Copy>{contact.location}. {contact.relocation}</Copy>
+          <Copy>
+            {contact.location}. {contact.relocation}
+            <br />
+            {contact.availability}
+          </Copy>
         </div>
         <Nav aria-label="Footer navigation">
           <Title>Explore</Title>
@@ -68,11 +72,18 @@ export default function Footer() {
         </Nav>
         <Nav aria-label="Contact links">
           <Title>Connect</Title>
-          <a href={`mailto:${site.email}`}>Email Zacharia</a>
-          <a href={site.linkedin} target="_blank" rel="noreferrer">LinkedIn profile</a>
-          <a href={site.github} target="_blank" rel="noreferrer">GitHub profile</a>
+          <a href={`mailto:${site.email}`}>Email me</a>
+          <a href={site.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn profile
+          </a>
+          <a href={site.github} target="_blank" rel="noreferrer">
+            GitHub profile
+          </a>
         </Nav>
-        <Bottom>© {new Date().getFullYear()} {site.name}. Maintenance leadership × technical systems.</Bottom>
+        <Bottom>
+          © {new Date().getFullYear()} {site.name}. Maintenance leadership ×
+          technical systems.
+        </Bottom>
       </Inner>
     </Shell>
   );

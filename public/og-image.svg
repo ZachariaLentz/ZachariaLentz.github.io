@@ -18,26 +18,26 @@
   </text>
 
   <!-- Positioning -->
-  <text x="100" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="700" fill="#60a5fa">
-    Maintenance &amp; Reliability Leader
+  <text x="100" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="700" fill="#60a5fa">
+    Industrial Maintenance &amp; Reliability Leader
   </text>
 
-  <text x="100" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="500" fill="#e2e8f0">
-    CMMS Administration • Industrial Implementation
+  <text x="100" y="315" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="500" fill="#e2e8f0">
+    Automated Manufacturing • Maintenance Systems
   </text>
 
   <!-- Description -->
   <text x="100" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="29" font-weight="400" fill="#e2e8f0">
-    Tesla Production Engineering Supervisor
+    Frontline teams • equipment • systems
   </text>
 
   <!-- Location/call to action -->
   <text x="100" y="485" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400" fill="#cbd5e1">
-    20+ technicians • 3 automated Powerwall production lines
+    Relocating to the Midland, Michigan area
   </text>
 
   <text x="100" y="530" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="400" fill="#94a3b8">
-    Sparks, Nevada → Midland, Michigan area
+    Michigan-based + remote opportunities • zacharia.dev
   </text>
 
   <!-- Right accent element -->

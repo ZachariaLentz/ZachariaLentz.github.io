@@ -1,5 +1,5 @@
 import React from "react";
-import FeaturedCaseStudy from "../../components/site/FeaturedCaseStudy";
+import { Link } from "react-router";
 import styled from "styled-components";
 import Layout, { Main } from "../../components/site/Layout";
 import PageMeta from "../../components/site/PageMeta";
@@ -18,7 +18,7 @@ import {
   Tag,
   TextLink,
 } from "../../components/site/UI";
-import { caseStudies, credibility, hero, site } from "../../portfolio";
+import { caseStudies, contact, credibility, hero, site } from "../../portfolio";
 
 const Hero = styled.section`
   padding: clamp(1rem, 4vw, 3rem) 0 clamp(3rem, 7vw, 5rem);
@@ -42,7 +42,7 @@ const ProofBar = styled.dl`
   }
   dt {
     margin-bottom: 0.35rem;
-    color: ${({ theme }) => theme.textTertiary};
+    color: ${({ theme }) => theme.textSecondary};
     font-size: 0.78rem;
     font-weight: 800;
     text-transform: uppercase;
@@ -61,20 +61,10 @@ const ProofBar = styled.dl`
   }
 
   @media (max-width: 520px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     div {
       border-right: 0;
     }
-  }
-`;
-
-const Bridge = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-
-  @media (max-width: 720px) {
-    grid-template-columns: 1fr;
   }
 `;
 
@@ -93,12 +83,13 @@ const jsonLd = {
       "Reliability",
       "CMMS administration",
       "Automated manufacturing",
-      "Industrial implementation",
+      "Maintenance workflows",
     ],
   },
 };
 
 export default function Home() {
+  const flagship = caseStudies.find((study) => study.featured);
   return (
     <Layout>
       <PageMeta jsonLd={jsonLd} />
@@ -107,6 +98,9 @@ export default function Home() {
           <Eyebrow>{hero.eyebrow}</Eyebrow>
           <PageTitle>{hero.headline}</PageTitle>
           <Intro>{hero.summary}</Intro>
+          <p>
+            <strong>{contact.relocation}</strong> {contact.availability}
+          </p>
           <Actions>
             <ButtonLink to="/proof-of-work">View Proof of Work</ButtonLink>
             <SecondaryButtonLink to="/experience">
@@ -125,65 +119,72 @@ export default function Home() {
           ))}
         </ProofBar>
 
-        <FeaturedCaseStudy placement="home" />
-
-        <Section>
-          <Eyebrow>Selected evidence</Eyebrow>
-          <SectionTitle>Proof of work</SectionTitle>
-          <SectionIntro>
-            Supporting case studies show how maintenance leadership, equipment
-            work, and systems administration connect in practice.
-          </SectionIntro>
+        <Section aria-labelledby="selected-proof">
+          <Eyebrow>Selected proof</Eyebrow>
+          <SectionTitle id="selected-proof">
+            Leading people. Understanding equipment. Improving systems.
+          </SectionTitle>
           <Grid>
-            {caseStudies
-              .filter((study) => !study.featured)
-              .map((study) => (
-                <CardLink key={study.id} to={`/case-studies/${study.id}`}>
-                  <Tag>{study.category}</Tag>
-                  <h3>{study.title}</h3>
-                  <p>{study.deck}</p>
-                  <TextLink>Read case study →</TextLink>
-                </CardLink>
-              ))}
+            <CardLink to="/case-studies/maintenance-leadership">
+              <Tag>Leadership & execution</Tag>
+              <h3>Maintenance leadership</h3>
+              <p>
+                Shift priorities, technician development, equipment recovery,
+                and cross-functional reliability work.
+              </p>
+              <TextLink>See leadership evidence →</TextLink>
+            </CardLink>
+            <CardLink to="/case-studies/equipment-qualification">
+              <Tag>Equipment & automation</Tag>
+              <h3>Qualification & commissioning</h3>
+              <p>
+                Italy equipment qualification, 58 Jira requests, and later U.S.
+                startup support.
+              </p>
+              <TextLink>See equipment evidence →</TextLink>
+            </CardLink>
+            <CardLink to="/case-studies/industrial-operations-intelligence">
+              <Tag>Systems & workflow · flagship</Tag>
+              <h3>{flagship.title}</h3>
+              <p>{flagship.feature.homeSummary}</p>
+              <TextLink>Explore the application →</TextLink>
+            </CardLink>
           </Grid>
         </Section>
-
         <Section>
-          <Bridge>
-            <div>
-              <Eyebrow>The primary lane</Eyebrow>
-              <SectionTitle>
-                Maintenance leadership and reliability execution
-              </SectionTitle>
-            </div>
-            <div>
-              <p>
-                Frontline credibility comes first: equipment troubleshooting,
-                preventive and corrective maintenance, rotating-shift
-                leadership, technician development, and cross-functional
-                reliability work.
-              </p>
-              <p>
-                CMMS administration, technical documentation, field service,
-                qualification support, and software training create a practical
-                bridge into industrial implementation—not a claim of external
-                SaaS consulting experience.
-              </p>
-              <SecondaryButtonLink to="/demonstration-project">
-                View CMMS implementation blueprint
-              </SecondaryButtonLink>
-            </div>
-          </Bridge>
+          <Eyebrow>Background</Eyebrow>
+          <SectionTitle>
+            From aviation maintenance to automated manufacturing
+          </SectionTitle>
+          <SectionIntro>
+            USMC CH-53E maintenance, customer-facing field service, and hands-on
+            production-equipment work inform my approach to leading maintenance.
+            Direct CMMS administration and software-development training add
+            depth to that operational foundation.
+          </SectionIntro>
+          <Actions>
+            <SecondaryButtonLink to="/experience">
+              View career history
+            </SecondaryButtonLink>
+            <SecondaryButtonLink to="/case-studies/cmms-administration">
+              CMMS administration evidence
+            </SecondaryButtonLink>
+          </Actions>
         </Section>
 
         <Section>
           <Eyebrow>Location and next step</Eyebrow>
           <SectionTitle>
-            Based in Sparks. Relocating home to Midland.
+            Based in Sparks, NV. Relocating to Midland, MI.
           </SectionTitle>
           <SectionIntro>
-            Open to maintenance leadership, reliability, planning, facilities or
-            operations leadership, and adjacent industrial implementation roles.
+            Open to Michigan-based and remote opportunities in{" "}
+            <Link to="/for/maintenance-reliability">
+              maintenance leadership
+            </Link>
+            , <Link to="/for/maintenance-systems">maintenance systems</Link>,
+            and{" "}
+            <Link to="/for/industrial-technology">industrial technology</Link>.
           </SectionIntro>
           <ButtonLink to="/contact">Start a conversation</ButtonLink>
         </Section>
